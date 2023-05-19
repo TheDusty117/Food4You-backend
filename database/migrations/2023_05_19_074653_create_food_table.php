@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name', 100);
-            $table->decimal('price', 4,2);
+            $table->decimal('price', 6,2);
             $table->string('ingredients', 150);
             $table->text('description');
             $table->tinyInteger('vegan')->default(0);
