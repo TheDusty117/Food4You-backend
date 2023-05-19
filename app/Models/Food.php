@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Food extends Model
 {
 
-    protected $table = 'food';
+    use HasFactory;
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
+
 }
