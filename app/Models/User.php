@@ -21,7 +21,7 @@ class User extends Authenticatable
     public function resturant():HasOne
     {
         return $this->hasOne(Resturant::class)
-    };
+    }
 
 
     protected $fillable = [
