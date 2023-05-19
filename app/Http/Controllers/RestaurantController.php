@@ -6,6 +6,8 @@ use App\Models\Restaurant;
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
 
+
+
 class RestaurantController extends Controller
 {
     /**
@@ -15,7 +17,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        // return "one to many";
+        // return Restaurant::all()->getFood();
     }
 
     /**
