@@ -10,6 +10,12 @@ class Restaurant extends Model
     use HasFactory;
 
 
+    public function user():HasOne
+    {
+        return $this->hasOne(User::class, 'user_id')
+    };
+
+
     public function categories()
     {
         return $this->belongsToMany(Category::class);
@@ -20,6 +26,7 @@ class Restaurant extends Model
     {
         return $this->hasMany(Food::class);
     }
+
 
 
 }

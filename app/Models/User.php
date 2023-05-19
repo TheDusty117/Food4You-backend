@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -16,7 +17,13 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-     */
+    */
+    public function resturant():HasOne
+    {
+        return $this->hasOne(Resturant::class)
+    }
+
+
     protected $fillable = [
         'name',
         'email',
