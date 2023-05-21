@@ -17,10 +17,10 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-    */
-    public function resturant():HasOne
+     */
+    public function resturant()
     {
-        return $this->hasOne(Resturant::class)
+        return $this->hasOne(Resturant::class);
     }
 
 
