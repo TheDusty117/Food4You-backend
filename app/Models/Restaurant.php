@@ -9,11 +9,19 @@ class Restaurant extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'address',
+        'telephone_number',
+        'email',
+        'vat',
+    ];
 
-    public function user():HasOne
+
+    public function user()
     {
-        return $this->hasOne(User::class, 'user_id')
-    };
+        return $this->hasOne(User::class, 'user_id');
+    }
 
 
     public function categories()
@@ -26,7 +34,4 @@ class Restaurant extends Model
     {
         return $this->hasMany(Food::class);
     }
-
-
-
 }
