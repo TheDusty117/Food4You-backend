@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Food extends Model
 {
 
-    use HasFactory;
+    protected $filable = ['name','price','ingredients','description','vegan','spicy','availability','visibility'];
+
+
+
+    // use HasFactory;
 
     public function restaurant()
     {
