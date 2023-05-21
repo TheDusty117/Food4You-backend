@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class User extends Authenticatable
@@ -18,9 +19,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
     */
-    public function resturant():HasOne
+    public function restaurant(): HasOne
     {
-        return $this->hasOne(Resturant::class)
+        return $this->hasOne(Restaurant::class);
     }
 
 
@@ -28,6 +29,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'telephone_number'
     ];
 
     /**
