@@ -19,6 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
     */
+  
     public function restaurant(): HasOne
     {
         return $this->hasOne(Restaurant::class);
