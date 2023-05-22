@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Food extends Model
 {
 
-    protected $filable = ['name','price','ingredients','description','vegan','spicy','availability','visibility','slug'];
+    protected $fillable = ['name','price','ingredients','description','vegan','spicy','availability','visibility','slug'];
 
 
     public function restaurant()

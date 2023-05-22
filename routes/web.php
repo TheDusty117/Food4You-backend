@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('ristoranti',[RestaurantController::class,'index']);
+Route::get('ristoranti', [RestaurantController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,8 +33,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
     //comando shortcut, che crea tutte e 4 le route(edit,update,destroy,show)
-    Route::resource('foods',FoodController::class);
+    Route::resource('foods',FoodController::class)->parameters([
+        'foods' => 'food:slug' //TRASFORMO ID IN SLUG, NELLE VARIE (index,show, ecc)
+    ]);
+
 });
 
-require __DIR__.'/auth.php';
+//Rotta per la vista show del food
+Route::get('/foods/{id}', 'FoodController@show')->name('foods.show');
+
+
+require __DIR__ . '/auth.php';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Food;
 use App\Http\Requests\StoreFoodRequest;
 use App\Http\Requests\UpdateFoodRequest;
+use illuminate\Support\Str;
 
 class FoodController extends Controller
 {
@@ -27,7 +28,7 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+        return view('foods.create');
     }
 
     /**
@@ -38,7 +39,13 @@ class FoodController extends Controller
      */
     public function store(StoreFoodRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['slug'] = Str::slug($data['name']);
+
+        $food = Food::create($data);
+
+        return to_route('food.show', $food);
     }
 
     /**
@@ -49,8 +56,9 @@ class FoodController extends Controller
      */
     public function show(Food $food)
     {
-        //
+        return view('foods.show', compact('food'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
