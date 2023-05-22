@@ -68,7 +68,7 @@ class FoodController extends Controller
      */
     public function edit(Food $food)
     {
-        //
+        return view('foods.edit', compact('food'));
     }
 
     /**
@@ -80,7 +80,7 @@ class FoodController extends Controller
      */
     public function update(UpdateFoodRequest $request, Food $food)
     {
-        //
+        return to_route('foods.show', $food);
     }
 
     /**
