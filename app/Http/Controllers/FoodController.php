@@ -17,7 +17,7 @@ class FoodController extends Controller
     {
         $foods = Food::all();
 
-        return view('foods.index',compact('foods'));
+        return view('foods.index', compact('foods'));
     }
 
     /**
@@ -47,10 +47,12 @@ class FoodController extends Controller
      * @param  \App\Models\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function show(Food $food)
+    public function show($id)
     {
-        //
+        $food = Food::findOrFail($id);
+        return view('foods.show', compact('food'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
