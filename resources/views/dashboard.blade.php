@@ -6,9 +6,11 @@
         {{ __('Dashboard') }}
     </h2>
     <div class="row justify-content-center">
+        <h1>Ristoratore Loggato</h1>
         <div class="col">
             <div class="card">
                 <div class="card-header">{{ __('User Dashboard') }}</div>
+
 
                 <div class="card-body">
                     @if (session('status'))

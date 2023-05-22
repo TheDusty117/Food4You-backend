@@ -29,7 +29,7 @@ class FoodSeeder extends Seeder
             $newFood->slug = Str::slug($newFood->name, '-');
         $newFood->save();
 
-             $newFood =new Food();
+        $newFood =new Food();
             $newFood->name = 'Pizza Margherita';
             $newFood->price = 6.00 ;
             $newFood->ingredients = 'Impasto tradizionale, Pomodoro , Mozzarella' ;
