@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name', 100)->unique();
-            $table->decimal('price', 6,2);
+            $table->decimal('price', 6,2)->nullable();
             $table->string('ingredients', 150)->nullable();
             $table->text('description')->nullable();
             $table->tinyInteger('vegan')->default(0);
