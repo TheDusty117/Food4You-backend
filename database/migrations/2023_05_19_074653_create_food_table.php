@@ -16,14 +16,18 @@ return new class extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name', 100);
+            $table->string('name', 100)->unique();
             $table->decimal('price', 6,2);
-            $table->string('ingredients', 150);
-            $table->text('description');
+            $table->string('ingredients', 150)->nullable();
+            $table->text('description')->nullable();
             $table->tinyInteger('vegan')->default(0);
             $table->tinyInteger('spicy')->default(0);
             $table->tinyInteger('availability')->default(1);
             $table->tinyInteger('visibility')->default(1);
+            //slug
+            $table->string('slug');
+            //softdeletes
+            $table->softDeletes();
 
             $table->timestamps();
         });

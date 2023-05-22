@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Food;
+use Illuminate\Support\Str;
+
 
 class FoodSeeder extends Seeder
 {
@@ -15,113 +17,121 @@ class FoodSeeder extends Seeder
      */
     public function run()
     {
-        $newFood = new Food([
-            'name' => 'Panino',
-            'price' => 10.00 ,
-            'ingredients' => 'Bun con sesamo',
-            'description' => 'Il Panino, un grande classico, semplice ma buonissimo!',
-            'vegan' => 0 ,
-            'spicy' => 0 ,
-            'availability' => 1 ,
-            'visibility' => 1 ,
-        ]);
+        $newFood =new Food();
+            $newFood->name = 'Panino';
+            $newFood->price = 10.00 ;
+            $newFood->ingredients = 'Bun con sesamo';
+            $newFood->description = 'Il Panino, un grande classico, semplice ma buonissimo!';
+            $newFood->vegan = 0 ;
+            $newFood->spicy = 0 ;
+            $newFood->availability = 1 ;
+            $newFood->visibility = 1 ;
+            $newFood->slug = Str::slug($newFood->name, '-');
         $newFood->save();
 
-             $newFood = new Food([
-            'name' => 'Pizza Margherita',
-            'price' => 6.00 ,
-            'ingredients' => 'Impasto tradizionale, Pomodoro , Mozzarella' ,
-            'description' => 'Margherita napoletana, dal sapore tipico',
-            'vegan' => 0 ,
-            'spicy' => 0 ,
-            'availability' => 1 ,
-            'visibility' => 1 ,
-        ]);
+             $newFood =new Food();
+            $newFood->name = 'Pizza Margherita';
+            $newFood->price = 6.00 ;
+            $newFood->ingredients = 'Impasto tradizionale, Pomodoro , Mozzarella' ;
+            $newFood->description = 'Margherita napoletana, dal sapore tipico';
+            $newFood->vegan = 0 ;
+            $newFood->spicy = 0 ;
+            $newFood->availability = 1 ;
+            $newFood->visibility = 1 ;
+            $newFood->slug = Str::slug($newFood->name, '-');
+
         $newFood->save();
 
-        $newFood = new Food([
-            'name' => 'Pulled Pork',
-            'price' => 18.00 ,
-            'ingredients' => 'Maiale sfilacciato, salsa barbecue, fagioli, coleslaw',
-            'description' => 'Vola in america con il nostro Pulled Pork!',
-            'vegan' => 0 ,
-            'spicy' => 0 ,
-            'availability' => 1 ,
-            'visibility' => 1 ,
-        ]);
+        $newFood =new Food();
+            $newFood->name = 'Pulled Pork';
+            $newFood->price = 18.00 ;
+            $newFood->ingredients = 'Maiale sfilacciato, salsa barbecue, fagioli, coleslaw';
+            $newFood->description = 'Vola in america con il nostro Pulled Pork!';
+            $newFood->vegan = 0 ;
+            $newFood->spicy = 0;
+            $newFood->availability = 1 ;
+            $newFood->visibility = 1 ;
+            $newFood->slug = Str::slug($newFood->name, '-');
+
         $newFood->save();
 
-        $newFood = new Food([
-            'name' => 'Ceasar Salad',
-            'price' => 12.00 ,
-            'ingredients' => 'Lattuga, salsa Worcestershire, aglio, Limone, Parmigiano, Olio EVO',
-            'description' => 'Rimani fit senza rinunciare a nulla con la nostra Ceasar Salad!',
-            'vegan' => 0 ,
-            'spicy' => 0 ,
-            'availability' => 1 ,
-            'visibility' => 1 ,
-        ]);
+        $newFood =new Food();
+            $newFood->name = 'Ceasar Salad';
+            $newFood->price = 12.00 ;
+            $newFood->ingredients = 'Lattuga, salsa Worcestershire, aglio, Limone, Parmigiano, Olio EVO';
+            $newFood->description = 'Rimani fit senza rinunciare a nulla con la nostra Ceasar Salad!';
+            $newFood->vegan = 0 ;
+            $newFood->spicy = 0 ;
+            $newFood->availability = 1 ;
+            $newFood->visibility = 1 ;
+            $newFood->slug = Str::slug($newFood->name, '-');
+
         $newFood->save();
 
-        $newFood = new Food([
-            'name' => 'Spaghetti al sugo',
-            'price' => 8.00 ,
-            'ingredients' => 'Spaghetti, Sugo di pomodori',
-            'description' => 'la grande tradizione italiana in un solo piatto!',
-            'vegan' => 0 ,
-            'spicy' => 0 ,
-            'availability' => 1 ,
-            'visibility' => 1 ,
-        ]);
+        $newFood =new Food();
+            $newFood->name = 'Spaghetti al sugo';
+            $newFood->price = 8.00 ;
+            $newFood->ingredients = 'Spaghetti, Sugo di pomodori';
+            $newFood->description = 'la grande tradizione italiana in un solo piatto!';
+            $newFood->vegan = 0 ;
+            $newFood->spicy = 0 ;
+            $newFood->availability = 1 ;
+            $newFood->visibility = 1 ;
+            $newFood->slug = Str::slug($newFood->name, '-');
+
         $newFood->save();
 
-        $newFood = new Food([
-            'name' => 'Filetto di Black Angus',
-            'price' => 20.00 ,
-            'ingredients' => 'Filetto di Black Angus, Vino Rosso, Sale, Pepe',
-            'description' => 'Il Filetto di Black Angus vi farà impazzire!',
-            'vegan' => 0 ,
-            'spicy' => 0 ,
-            'availability' => 1 ,
-            'visibility' => 1 ,
-        ]);
+        $newFood =new Food();
+            $newFood->name = 'Filetto di Black Angus';
+            $newFood->price = 20.00 ;
+            $newFood->ingredients = 'Filetto di Black Angus, Vino Rosso, Sale, Pepe';
+            $newFood->description = 'Il Filetto di Black Angus vi farà impazzire!';
+            $newFood->vegan = 0 ;
+            $newFood->spicy = 0 ;
+            $newFood->availability = 1 ;
+            $newFood->visibility = 1 ;
+            $newFood->slug = Str::slug($newFood->name, '-');
+
         $newFood->save();
 
 
-        $newFood = new Food([
-            'name' => 'Waffle and Fruits',
-            'price' => 6.50 ,
-            'ingredients' => 'Waffle, Gelato alla vaniglia, Frutti di bosco, Caramello salato',
-            'description' => 'Waffle con gelato e frutta, perfetto per godersi un dolce fresco e saporito.',
-            'vegan' => 0 ,
-            'spicy' => 0 ,
-            'availability' => 1 ,
-            'visibility' => 1 ,
-        ]);
+        $newFood =new Food();
+            $newFood->name = 'Waffle and Fruits';
+            $newFood->price = 6.50 ;
+            $newFood->ingredients = 'Waffle, Gelato alla vaniglia, Frutti di bosco, Caramello salato';
+            $newFood->description = 'Waffle con gelato e frutta, perfetto per godersi un dolce fresco e saporito.';
+            $newFood->vegan = 0 ;
+            $newFood->spicy = 0 ;
+            $newFood->availability = 1 ;
+            $newFood->visibility = 1 ;
+            $newFood->slug = Str::slug($newFood->name, '-');
+
         $newFood->save();
 
-        $newFood = new Food([
-            'name' => 'Cheescake al Pistacchio',
-            'price' => 6.00 ,
-            'ingredients' => 'Cheescake, crema di pistacchio, pistacchio tritato',
-            'description' => 'Un classico inglese, ma con un twist Pistacchioso!',
-            'vegan' => 0 ,
-            'spicy' => 0 ,
-            'availability' => 1 ,
-            'visibility' => 1 ,
-        ]);
+        $newFood =new Food();
+            $newFood->name = 'Cheescake al Pistacchio';
+            $newFood->price = 6.00 ;
+            $newFood->ingredients = 'Cheescake, crema di pistacchio, pistacchio tritato';
+            $newFood->description = 'Un classico inglese, ma con un twist Pistacchioso!';
+            $newFood->vegan = 0 ;
+            $newFood->spicy = 0 ;
+            $newFood->availability = 1 ;
+            $newFood->visibility = 1 ;
+            $newFood->slug = Str::slug($newFood->name, '-');
+
         $newFood->save();
 
-        $newFood = new Food([
-            'name' => 'Frittura di Pesce',
-            'price' => 9.00 ,
-            'ingredients' => 'Gamberetti, Triglie, Acciughe, Merluzzetti, Calamari, Triglie',
-            'description' => 'La nostra frittura dal profumo inconfondibile, gustala ora!',
-            'vegan' => 0 ,
-            'spicy' => 0 ,
-            'availability' => 1 ,
-            'visibility' => 1 ,
-        ]);
+        $newFood =new Food();
+            $newFood->name = 'Frittura di Pesce';
+            $newFood->price = 9.00 ;
+            $newFood->ingredients = 'Gamberetti, Triglie, Acciughe, Merluzzetti, Calamari, Triglie';
+            $newFood->description = 'La nostra frittura dal profumo inconfondibile, gustala ora!';
+            $newFood->vegan = 0 ;
+            $newFood->spicy = 0 ;
+            $newFood->availability = 1 ;
+            $newFood->visibility = 1 ;
+            $newFood->slug = Str::slug($newFood->name, '-');
+
         $newFood->save();
 
 
