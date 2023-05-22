@@ -4,6 +4,15 @@
     <div class="container">
         <table class="table table-striped table-inverse table-responsive">
             <thead>
+
+                {{-- aggiunta del cibo bottone --}}
+                <div class="container py-4">
+                    <h2>Questi sono i Foods</h2>
+                    <a class="btn btn-primary" href="{{ route('foods.create') }}">
+                        Aggiungi cibo
+                    </a>
+                </div>
+
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
@@ -24,7 +33,9 @@
                 @forelse ($foods as $food)
                     <tr>
                         <td>{{ $food->id }}</td>
-                        <td>{{ $food->name }}</td>
+                        <td>
+                            <a href="{{ route('foods.show',$food) }}">{{ $food->name }}</a>
+                        </td>
                         <td>{{ $food->price }}</td>
                         <td>{{ $food->slug }}</td>
                         <td>{{ $food->availability }}</td>
@@ -34,14 +45,14 @@
 
                         {{-- BOTTONI DI MODIFICA E CANCELLAZIONE --}}
                         <td>
-                            <button class="btn btn-secondary">
+                            <a class="btn btn-secondary" href="{{ route('foods.edit',$food) }}">
                                 M
-                            </button>
+                            </a>
                         </td>
                         <td>
-                            <button class="btn btn-danger">
+                            <a class="btn btn-danger" href="{{ route('foods.destroy',$food) }}">
                                 X
-                            </button>
+                            </a>
                         </td>
 
                     </tr>

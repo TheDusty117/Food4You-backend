@@ -34,7 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //comando shortcut, che crea tutte e 4 le route(edit,update,destroy,show)
-    Route::resource('foods',FoodController::class);
+    Route::resource('foods',FoodController::class)->parameters([
+        'foods' => 'food:slug' //aggiungo parameters SLUG, per far si che utilizzi lo slug quando vado su edit,show ecc, anziche l'ID!!
+    ]);
 });
 
 require __DIR__.'/auth.php';
