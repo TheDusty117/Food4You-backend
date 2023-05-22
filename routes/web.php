@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('ristoranti',[RestaurantController::class,'index']);
+Route::get('ristoranti', [RestaurantController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -38,6 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('foods',FoodController::class)->parameters([
         'foods' => 'food:slug' //TRASFORMO ID IN SLUG, NELLE VARIE (index,show, ecc)
     ]);
+
 });
 
-require __DIR__.'/auth.php';
+//Rotta per la vista show del food
+Route::get('/foods/{id}', 'FoodController@show')->name('foods.show');
+
+
+require __DIR__ . '/auth.php';

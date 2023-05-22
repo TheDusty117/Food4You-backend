@@ -17,7 +17,7 @@ class FoodController extends Controller
     {
         $foods = Food::all();
 
-        return view('foods.index',compact('foods'));
+        return view('foods.index', compact('foods'));
     }
 
     /**
@@ -49,8 +49,9 @@ class FoodController extends Controller
      */
     public function show(Food $food)
     {
-        //
+        return view('foods.show', compact('food'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
