@@ -19,9 +19,9 @@
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
-                // questo va nella classe 
+                // questo va nella classe
                  @error('image') is-invalid @enderror
-              
+
                  @enderror -->
 
         </div>
@@ -43,44 +43,32 @@
 
 
 
-        <div class="mb-3">
-            <label for="vegan" class="form-label">Vegano</label>
-            @if($food->vegan == 0)
-            <input type="text" name="vegan" class="form-control" value="Vegano" id="vegan">
-            @else
-            <input type="text" name="vegan" class="form-control" value="non Vegano" id="vegan">
-            @endif
+        <div class='mb-3'>
+            <div class="form-check form-switch">
+                <input class="form-check-input" value="" name='vegan' type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Vegano</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" value="" name='spicy' type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Piccante</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" value="" name='avaiability' type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Disponibile</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" value="" name='visibility' type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Visibile</label>
+            </div>
         </div>
 
-
-        <div class="mb-3">
-            <label for="spicy" class="form-label">Picchante</label>
-            @if($food->spicy == 0)
-            <input type="text" name="spicy" class="form-control" value="Picchante" id="spicy">
-            @else
-            <input type="text" name="spicy" class="form-control" value="Non Picchante" id="spicy">
-            @endif
-        </div>
+        <button type="submit" class="btn btn-secondary">
+            Modifica cibo
+        </button>
 
 
-        <div class="mb-3">
-            <label for="availability" class="form-label">Disponibile</label>
-            @if($food->availability == 0)
-            <input type="text" name="availability" class="form-control" value="Disponibile" id="availability">
-            @else
-            <input type="text" name="availability" class="form-control" value="Non Disponibile" id="availability">
-            @endif
-        </div>
 
 
-        <div class="mb-3">
-            <label for="visibility" class="form-label">Visibilità</label>
-            @if($food->avaible == 0)
-            <input type="text" name="visibility" class="form-control" value="Visibile" id="visibility">
-            @else
-            <input type="text" name="visibility" class="form-control" value="Non Visibile" id="visibility">
-            @endif
-        </div>
     </form>
 </div>
 

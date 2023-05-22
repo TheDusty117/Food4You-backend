@@ -25,7 +25,11 @@ class StoreFoodRequest extends FormRequest
     {
         return [
             'name' => 'required|max:150|unique:food,name',
-            'price' => 'nullable'
+            'price' => 'nullable',
+            // 'vegan' => '0',
+            // 'spicy' => '0',
+            // 'availability' => '1',
+            // 'visibility' => '1',
         ];
     }
 }

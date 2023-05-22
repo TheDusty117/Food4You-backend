@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Rule;
+
+
 class UpdateFoodRequest extends FormRequest
 {
     /**
@@ -13,7 +16,7 @@ class UpdateFoodRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +27,18 @@ class UpdateFoodRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required',
+                'max:100',
+                Rule::unique('food','name')->ignore($this->food)
+            ],
+            'price'=> [
+                'required',
+            ],
+
+            'Ingredients'=> 'nullable|string',
+            'description'=> 'nullable|string',
+
         ];
     }
 }

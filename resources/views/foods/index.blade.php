@@ -5,7 +5,7 @@
 <div>
     <h1>Food index</h1>
 </div>
-@endsection
+
 
     <div class="container">
         <table class="table table-striped table-inverse table-responsive">
@@ -70,5 +70,6 @@
             </tbody>
         </table>
     </div>
-@endsection
+
+    @endsection
 

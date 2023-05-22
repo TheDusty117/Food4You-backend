@@ -41,8 +41,5 @@ Route::middleware('auth')->group(function () {
 
 });
 
-//Rotta per la vista show del food
-Route::get('/foods/{id}', 'FoodController@show')->name('foods.show');
-
 
 require __DIR__ . '/auth.php';
