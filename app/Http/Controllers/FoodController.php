@@ -45,7 +45,7 @@ class FoodController extends Controller
 
         $food = Food::create($data);
 
-        return to_route('food.show', $food);
+        return to_route('foods.show', $food);
     }
 
     /**
@@ -80,7 +80,22 @@ class FoodController extends Controller
      */
     public function update(UpdateFoodRequest $request, Food $food)
     {
+
+        $data = $request->validated();
+
+        //if che fa cambiare lo slug di pari passo con il name che noi modifichiamo
+        if ($data['name'] !== $food->name){
+            $data['slug'] = Str::slug($data['name']);
+        }
+
+        $data['slug'] = Str::slug($data['name']);
+
+        $food->update($data);
+
         return to_route('foods.show', $food);
+
+
+
     }
 
     /**
