@@ -36,7 +36,13 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'restaurant_name' => ['required', 'min:3']
+            'restaurant_name' => ['required', 'min:3', 'max:100'],
+            'restaurant_address' => ['required', 'min:4', 'max:150'],
+            'restaurant_vat' => ['required', 'number' , 'min:11', 'max:11'],
+            'restaurant_email' => ['required', 'string', 'email', 'max:255', 'unique'],
+            'restaurant_telephone_number' => ['required', 'number' , 'min:10', 'max:10'],
+
+
         ]);
 
         $user = User::create([
@@ -48,6 +54,10 @@ class RegisteredUserController extends Controller
         //creo restaurant(sx name nella table restaurant --- dx nome form)
         $restaurant = Restaurant::create([
             'name' => $request->restaurant_name,
+            'address' => $request->restaurant_address,
+            'vat' => $request->restaurant_vat,
+            'email' => $request->restaurant_email,
+            'telephone_number' => $request->restaurant_telephone_number,
         ]);
 
 
