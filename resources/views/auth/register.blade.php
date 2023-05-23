@@ -10,6 +10,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        {{-- @method('PUT') --}}
                         {{-- NAME --}}
                         <div class="mb-4 row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
@@ -63,48 +64,15 @@
 
                         {{-- da qui è custom --}}
 
-                        {{-- NOME RISTORANTE ok--}}
+
                         <div class="mb-4 row">
-                            <label for="restaurant-name" class="col-md-4 col-form-label text-md-right">{{ __('Nome del ristorante') }}</label>
+                          <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">{{ __('Ristorante Nome') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="restaurant-name" type="text" class="form-control @error('restaurant-name') is-invalid @enderror" name="restaurant-name" value="{{ old('restaurant-name') }}" required autocomplete="restaurant-name" autofocus>
+                          <div class="col-md-6">
+                              <input id="restaurant_name" type="text" class="form-control @error('restaurant_name') is-invalid @enderror" name="restaurant_name" value="{{ old('restaurant_name') }}" required autocomplete="restaurant_name" autofocus>
 
-                                @error('restaurant-name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        {{-- INDIRIZZO RISTORANTE ok--}}
-                        <div class="mb-4 row">
-                            <label for="restaurant-address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo del ristorante') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="restaurant-address" type="text" class="form-control @error('restaurant-address') is-invalid @enderror" name="restaurant-address" value="{{ old('restaurant-address') }}" required autocomplete="restaurant-address" autofocus>
-
-                                @error('restaurant-address')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        {{-- PARTITA IVA ok--}}
-                        <div class="mb-4 row">
-                            <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" value="{{ old('vat') }}" required autocomplete="vat" autofocus>
-
-                                @error('vat')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
+                          </div>
+                      </div>
 
 
 
@@ -112,7 +80,7 @@
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrati') }}
- </div>
+                        </div>
                     </form>
                 </div>
             </div>

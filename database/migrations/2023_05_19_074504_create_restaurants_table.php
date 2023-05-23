@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->string('address', 150);
-            $table->string('telephone_number', 10);
-            $table->string('email', 100);
-            $table->string('vat', 11);
+            $table->string('name', 100)->nullable();
+            $table->string('address', 150)->nullable();
+            $table->string('telephone_number', 10)->nullable();
+            $table->string('email', 100)->nullable();
+            $table->string('vat', 11)->nullable();
             $table->timestamps();
         });
     }

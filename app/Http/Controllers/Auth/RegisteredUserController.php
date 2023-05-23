@@ -36,24 +36,22 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'restaurant-name' => ['required', 'string', 'max:100'],
-            'restaurant-address' => ['required', 'string', 'max:150'],
-            'vat' => ['required', 'string', 'max:11']
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'restaurant-name' => $request->name,
-            'restaurant-address' => $request->address,
-            'vat' => $request->vat,
         ]);
 
-        // $restaurant = Restaurant::create([
-        // ]);
+        //creo restaurant(sx name nella table restaurant --- dx nome form)
+        $restaurant = Restaurant::create([
+            'name' => $request->restaurant_name,
+        ]);
+
 
         event(new Registered($user));
+
 
         Auth::login($user);
 
