@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('telephone_number', 10)->nullable();
             $table->string('email', 100)->nullable();
             $table->string('vat', 11)->notnull();
+
+            $table->foreignId('user_id')->costrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }
