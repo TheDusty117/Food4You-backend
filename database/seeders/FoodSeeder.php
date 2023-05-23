@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Food;
+use App\Models\Restaurant;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 
 class FoodSeeder extends Seeder
@@ -15,9 +17,12 @@ class FoodSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
+        $restaurant_ids = Restaurant::all()->pluck('id')->all();
+
         $newFood = new Food();
+        $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
         $newFood->name = 'Panino';
         $newFood->price = 10.00;
         $newFood->ingredients = 'Bun con sesamo';
@@ -27,6 +32,8 @@ class FoodSeeder extends Seeder
         $newFood->save();
 
         $newFood = new Food();
+        $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
+
         $newFood->name = 'Pizza Margherita';
         $newFood->price = 6.00;
         $newFood->ingredients = 'Impasto tradizionale, Pomodoro , Mozzarella';
@@ -37,6 +44,8 @@ class FoodSeeder extends Seeder
         $newFood->save();
 
         $newFood = new Food();
+        $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
+
         $newFood->name = 'Pulled Pork';
         $newFood->price = 18.00;
         $newFood->ingredients = 'Maiale sfilacciato, salsa barbecue, fagioli, coleslaw';
@@ -47,6 +56,8 @@ class FoodSeeder extends Seeder
         $newFood->save();
 
         $newFood = new Food();
+        $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
+
         $newFood->name = 'Ceasar Salad';
         $newFood->price = 12.00;
         $newFood->ingredients = 'Lattuga, salsa Worcestershire, aglio, Limone, Parmigiano, Olio EVO';
@@ -57,6 +68,8 @@ class FoodSeeder extends Seeder
         $newFood->save();
 
         $newFood = new Food();
+        $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
+
         $newFood->name = 'Spaghetti al sugo';
         $newFood->price = 8.00;
         $newFood->ingredients = 'Spaghetti, Sugo di pomodori';
@@ -67,6 +80,8 @@ class FoodSeeder extends Seeder
         $newFood->save();
 
         $newFood = new Food();
+        $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
+
         $newFood->name = 'Filetto di Black Angus';
         $newFood->price = 20.00;
         $newFood->ingredients = 'Filetto di Black Angus, Vino Rosso, Sale, Pepe';
@@ -78,6 +93,8 @@ class FoodSeeder extends Seeder
 
 
         $newFood = new Food();
+        $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
+
         $newFood->name = 'Waffle and Fruits';
         $newFood->price = 6.50;
         $newFood->ingredients = 'Waffle, Gelato alla vaniglia, Frutti di bosco, Caramello salato';
@@ -88,6 +105,8 @@ class FoodSeeder extends Seeder
         $newFood->save();
 
         $newFood = new Food();
+        $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
+
         $newFood->name = 'Cheescake al Pistacchio';
         $newFood->price = 6.00;
         $newFood->ingredients = 'Cheescake, crema di pistacchio, pistacchio tritato';
@@ -98,6 +117,8 @@ class FoodSeeder extends Seeder
         $newFood->save();
 
         $newFood = new Food();
+        $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
+
         $newFood->name = 'Frittura di Pesce';
         $newFood->price = 9.00;
         $newFood->ingredients = 'Gamberetti, Triglie, Acciughe, Merluzzetti, Calamari, Triglie';

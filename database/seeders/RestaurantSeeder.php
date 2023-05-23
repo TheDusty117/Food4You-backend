@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\User;
 use App\Models\Restaurant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,7 @@ class RestaurantSeeder extends Seeder
     public function run(Faker $faker)
     {
         $category_ids = Category::all()->pluck('id')->all();
+        $user_ids = User::all()->pluck('id')->all();
 
         $restaurants = [
             [
@@ -151,6 +153,7 @@ class RestaurantSeeder extends Seeder
             $restaurant->telephone_number = $rest['telephone_number'];
             $restaurant->email = $rest['email'];
             $restaurant->vat = 'IT' . random_int(100000000, 999999999);
+            $restaurant->user_id = $faker->randomElement($user_ids);
             $restaurant->save();
 
             $restaurant->categories()->attach($faker->randomElements($category_ids, rand(1, 16)));
