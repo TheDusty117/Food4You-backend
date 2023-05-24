@@ -15,20 +15,15 @@ return new class extends Migration
     {
         Schema::table('restaurants', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('restaurants');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('restaurants', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
-        });
-    }
+public function down()
+{
+    Schema::table('restaurants', function (Blueprint $table){
+        $table->dropForeign(['user_id']);
+        $table->dropColumn('user_id');
+    });
+}
 };

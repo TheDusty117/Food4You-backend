@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->string('address', 150);
-            $table->string('telephone_number', 10);
-            $table->string('email', 100);
-            $table->string('vat', 11);
+
+            $table->string('name', 100)->notnull();
+            $table->string('address', 150)->notnull();
+            $table->string('telephone_number', 20)->nullable();
+            $table->string('email', 100)->nullable();
+            $table->string('vat', 11)->notnull();
             $table->timestamps();
         });
     }
@@ -34,3 +35,4 @@ return new class extends Migration
         Schema::dropIfExists('restaurants');
     }
 };
+
