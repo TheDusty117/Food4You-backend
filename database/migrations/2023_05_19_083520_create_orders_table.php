@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('name', 150)->nullable(false);
             $table->decimal('order_price', 8, 2)->nullable(false);
             $table->string('mail', 100)->nullable();
-            $table->tinyInteger('telephon_number')->nullable(false);
+            $table->string('telephone_number', 15)->nullable(false);
             $table->tinyInteger('status')->default(1)->nullable(false);
             $table->timestamps();
         });
