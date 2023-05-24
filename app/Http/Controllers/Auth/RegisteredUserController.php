@@ -45,6 +45,7 @@ class RegisteredUserController extends Controller
             'restaurant_vat' => ['required', 'min:11', 'max:11'],
             'restaurant_telephone_number' => ['nullable', 'min:7', 'max:10',],
 
+
         ]);
 
         $user = User::create([
