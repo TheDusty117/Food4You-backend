@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Food extends Model
 {
 
-    protected $fillable = ['name','price','ingredients','description','vegan','spicy','availability','visibility','slug'];
+    protected $fillable = ['name', 'price', 'ingredients', 'description', 'vegan', 'spicy', 'availability', 'visibility', 'slug'];
 
 
     public function restaurant()
@@ -17,8 +17,11 @@ class Food extends Model
         return $this->belongsTo(Restaurant::class);
     }
 
+    public function order()
+    {
+        return $this->belongsToMany(Orders::class, 'order_id');
+    }
 
     // use HasFactory;
     use SoftDeletes;
-
 }
