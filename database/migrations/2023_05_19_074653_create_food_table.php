@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
 
             $table->string('name', 100)->unique();
-            $table->decimal('price', 6,2)->nullable();
+            $table->decimal('price', 6, 2)->nullable();
             $table->string('ingredients', 150)->nullable();
             $table->text('description')->nullable();
-            $table->tinyInteger('vegan')->default(0);
-            $table->tinyInteger('spicy')->default(0);
-            $table->tinyInteger('availability')->default(1);
+            // $table->tinyInteger('vegan')->default(0);
+            // $table->tinyInteger('spicy')->default(0);
+            // $table->tinyInteger('availability')->default(1);
             $table->tinyInteger('visibility')->default(1);
             //slug
             $table->string('slug');

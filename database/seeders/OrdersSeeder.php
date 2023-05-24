@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Food;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Orders;
@@ -11,6 +12,8 @@ class OrdersSeeder extends Seeder
 {
     public function run()
     {
+        $food_ids = Food::all()->pluck('id')->all();
+
         $faker = Faker::create();
 
         for ($i = 1; $i <= 20; $i++) {
@@ -25,4 +28,3 @@ class OrdersSeeder extends Seeder
         }
     }
 }
-
