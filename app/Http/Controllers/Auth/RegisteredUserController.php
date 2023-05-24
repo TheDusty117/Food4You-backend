@@ -69,9 +69,7 @@ class RegisteredUserController extends Controller
 
         $user->categories()->sync($request->input('categories',[]));
 
-
-
-        event(new Registered($user));
+stered($user));
 
 
         Auth::login($user);
