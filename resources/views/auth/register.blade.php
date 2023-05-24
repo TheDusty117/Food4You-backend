@@ -113,7 +113,7 @@
                     </div>
 
 
-                    {{-- EMAIL --}}
+                        {{-- EMAIL --}}
                         <div class="mb-4 row">
                             <label for="restaurant_email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
@@ -129,20 +129,57 @@
                         </div>
 
                         {{-- NUMERO DI TELEFONO --}}
-                      <div class="mb-4 row">
-                        <label for="restaurant_telephone_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero di Telefono') }}</label>
+                        <div class="mb-4 row">
+                            <label for="restaurant_telephone_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero di Telefono') }}</label>
 
-                        <div class="col-md-6">
-                            <input id="restaurant_telephone_number" type="number" class="form-control @error('restaurant_telephone_number') is-invalid @enderror" name="restaurant_telephone_number" value="{{ old('restaurant_telephone_number') }}" required autocomplete="restaurant_telephone_number" autofocus>
+                            <div class="col-md-6">
+                                <input id="restaurant_telephone_number" type="number" class="form-control @error('restaurant_telephone_number') is-invalid @enderror" name="restaurant_telephone_number" value="{{ old('restaurant_telephone_number') }}" required autocomplete="restaurant_telephone_number" autofocus>
 
-                            @error('restaurant_telephone_number')
-                              <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                              </span>
-                              @enderror
+                                @error('restaurant_telephone_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
+                            </div>
+                        </div>
+
+                        {{-- CATEGORIE --}}
+                        <div class="mb-3">
+                            <label for="categories" class="form-label">Tipologia di ristorante</label>
+                            <div class="form-check">
+                                {{-- <input name="categories[]" @checked( in_array($category->id, old('categories',[]) ) ) class="form-check-input" type="checkbox" value="{{ $category->id }}" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  {{ $category->name }}
+                                </label>  --}}
+
+                                <input name="categories[1]" class="form-check-input" type="checkbox" value="italiano" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    italiano
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+
+                                <input name="categories[2]" class="form-check-input" type="checkbox" value="italiano" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    internazionale
+                                </label>
+                            </div>
+
+                                @error('categories')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror 
+
+
+
+
+
+
 
                         </div>
-                    </div>
 
 
 

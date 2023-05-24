@@ -36,7 +36,26 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $categories = Category::create([
+            'name' => [
+                'italiano',
+                'internazionale',
+                'cinese',
+                'fusion',
+                'messicano',
+                'thailandese',
+                'indiano',
+                'giapponese',
+                'carne',
+                'pesce',
+                'panini',
+                'fast food',
+                'primi piatti',
+                'secondi piatti',
+                'lounge bar',
+                'food & drink'
+            ]
+        ]);
     }
 
     /**

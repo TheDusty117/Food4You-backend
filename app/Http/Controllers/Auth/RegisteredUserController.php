@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Restaurant;
+use App\Models\Category;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -21,6 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+        // $categories = Category::get();
         return view('auth.register');
     }
 
@@ -41,8 +43,7 @@ class RegisteredUserController extends Controller
             'restaurant_vat' => ['required', 'min:11', 'max:11'],
             'restaurant_email' => ['required', 'string', 'email', 'max:255'],
             'restaurant_telephone_number' => ['required', 'min:7', 'max:10'],
-
-
+            'categories' => ['required','min:1'],
         ]);
 
         $user = User::create([
@@ -61,6 +62,9 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id,
 
         ]);
+
+        $user->categories()->sync($request->input('categories',[]));
+
 
 
         event(new Registered($user));
