@@ -58,8 +58,7 @@ class RegisteredUserController extends Controller
             'vat' => $request->restaurant_vat,
             'email' => $request->restaurant_email,
             'telephone_number' => $request->restaurant_telephone_number,
-            // 'user_id' => nullable(),
-
+            'user_id' => $user->id,
 
         ]);
 
