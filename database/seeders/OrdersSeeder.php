@@ -14,7 +14,6 @@ class OrdersSeeder extends Seeder
     {
         $faker = Faker::create('it_IT');
 
-
         $faker = Faker::create();
 
 
