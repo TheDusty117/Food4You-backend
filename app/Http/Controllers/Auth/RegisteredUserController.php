@@ -34,14 +34,14 @@ class RegisteredUserController extends Controller
     {
         //$validated = $request ecc
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string','min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'restaurant_name' => ['required', 'min:3', 'max:100'],
             'restaurant_address' => ['required', 'min:4', 'max:150'],
             'restaurant_vat' => ['required', 'min:11', 'max:11'],
             // 'restaurant_email' => ['required', 'string', 'email', 'max:255'],
-            'restaurant_telephone_number' => ['required', 'min:7', 'max:10'],
+            'restaurant_telephone_number' => ['nullable', 'min:7', 'max:10',],
 
 
         ]);
