@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'restaurant_name' => ['required', 'min:3', 'max:100'],
             'restaurant_address' => ['required', 'min:4', 'max:150'],
@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        //questo é un reset
         //creo restaurant(sx name nella table restaurant --- dx nome form)
         $restaurant = Restaurant::create([
             'name' => $request->restaurant_name,
