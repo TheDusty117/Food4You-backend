@@ -16,15 +16,11 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['italiano','internazionale','cinese','fusion','messicano','thailandese','indiano','giapponese','carne','pesce','panini','fast food','primi piatti', 'secondi piatti', 'lounge bar', 'food & drink'];
+        $categories = ['italiano','internazionale','cinese','fusion','messicano','thailandese','indiano','giapponese','carne','pesce','panini','fast food','primi piatti','secondi piatti','lounge bar','food & drink'];
 
         foreach ($categories as $category_name) {
             $category = new Category();
-
             $category->name = $category_name;
-            
-            
-
             $category->save();
         }
     }
