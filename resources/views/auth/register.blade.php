@@ -13,7 +13,7 @@
                         {{-- @method('PUT') --}}
                         {{-- NAME --}}
                         <div class="mb-4 row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -27,7 +27,7 @@
                         </div>
                         {{-- EMAIL --}}
                         <div class="mb-4 row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -41,7 +41,7 @@
                         </div>
                         {{-- PASSWORD --}}
                         <div class="mb-4 row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -55,7 +55,7 @@
                         </div>
                         {{-- CONFERMA PASSWORD --}}
                         <div class="mb-4 row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -66,7 +66,7 @@
 
                         {{-- RESTAURANT NAME INSERIMENTO OK FUNZIONANTE (vedi RegisteredUSerController) --}}
                     <div class="mb-4 row">
-                          <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Attività') }}</label>
+                          <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">{{ __('Nome Attività*') }}</label>
 
                           <div class="col-md-6">
                               <input id="restaurant_name" type="text" class="form-control @error('restaurant_name') is-invalid @enderror" name="restaurant_name" value="{{ old('restaurant_name') }}" required autocomplete="restaurant_name" autofocus>
@@ -82,7 +82,7 @@
 
                       {{-- INDIRIZZO RISTORANTE --}}
                     <div class="mb-4 row">
-                        <label for="restaurant_address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo Attività') }}</label>
+                        <label for="restaurant_address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo Attività*') }}</label>
 
                         <div class="col-md-6">
                             <input id="restaurant_address" type="text" class="form-control @error('restaurant_address') is-invalid @enderror" name="restaurant_address" value="{{ old('restaurant_address') }}" required autocomplete="restaurant_address" autofocus>
@@ -98,7 +98,7 @@
 
                       {{-- PARTITA IVA --}}
                       <div class="mb-4 row">
-                        <label for="restaurant_vat" class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA') }}</label>
+                        <label for="restaurant_vat" class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA*') }}</label>
 
                         <div class="col-md-6">
                             <input id="restaurant_vat" type="number" class="form-control @error('restaurant_vat') is-invalid @enderror" name="restaurant_vat" value="{{ old('restaurant_vat') }}" required autocomplete="restaurant_vat" autofocus>
@@ -113,8 +113,10 @@
                     </div>
 
 
-                        {{-- EMAIL --}}
-                        <div class="mb-4 row">
+
+                    {{-- EMAIL --}}
+                        {{-- <div class="mb-4 row">
+
                             <label for="restaurant_email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
@@ -126,7 +128,7 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{-- NUMERO DI TELEFONO --}}
                         <div class="mb-4 row">
