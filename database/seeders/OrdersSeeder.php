@@ -15,8 +15,6 @@ class OrdersSeeder extends Seeder
 
         $faker = Faker::create('it_IT');
 
-        $food_ids = Food::all()->pluck('id')->all();
-
         $faker = Faker::create();
 
 
