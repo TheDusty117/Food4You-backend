@@ -12,17 +12,13 @@ class OrdersSeeder extends Seeder
 {
     public function run()
     {
-
         $faker = Faker::create('it_IT');
 
         $food_ids = Food::all()->pluck('id')->all();
 
-        $faker = Faker::create();
-
-
         for ($i = 1; $i <= 20; $i++) {
             Orders::create([
-                'address' => $faker->city . ', Roma',
+                'address' => $faker->streetAddress . ', Roma',
                 'name' => $faker->name,
                 'order_price' => $faker->randomFloat(2, 10, 100),
                 'mail' => $faker->email,
