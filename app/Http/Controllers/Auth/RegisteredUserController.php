@@ -34,7 +34,8 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
 
     {
-        //$validated = $request ecc
+        // dd($request);
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
@@ -42,11 +43,7 @@ class RegisteredUserController extends Controller
             'restaurant_name' => ['required', 'min:3', 'max:100'],
             'restaurant_address' => ['required', 'min:4', 'max:150'],
             'restaurant_vat' => ['required', 'min:11', 'max:11'],
-
-            'restaurant_email' => ['required', 'string', 'email', 'max:255'],
             'restaurant_telephone_number' => ['nullable', 'min:7', 'max:10',],
-            'categories' => ['required','min:1'],
-
 
         ]);
 
@@ -66,9 +63,6 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id,
 
         ]);
-
-        $user->categories()->sync($request->input('categories',[]));
-
 
 
         event(new Registered($user));
