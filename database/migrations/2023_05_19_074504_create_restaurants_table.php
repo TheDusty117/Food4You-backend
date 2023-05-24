@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('name', 100)->notnull();
             $table->string('address', 150)->notnull();
-            $table->string('telephone_number', 10)->nullable();
+            $table->string('telephone_number', 20)->nullable();
             $table->string('email', 100)->nullable();
             $table->string('vat', 11)->notnull();
             $table->timestamps();
@@ -35,3 +35,4 @@ return new class extends Migration
         Schema::dropIfExists('restaurants');
     }
 };
+
