@@ -69,11 +69,6 @@ class RegisteredUserController extends Controller
 
         $user->categories()->sync($request->input('categories',[]));
 
-stered($user));
-
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+      return redirect(RouteServiceProvider::HOME);
     }
 }
