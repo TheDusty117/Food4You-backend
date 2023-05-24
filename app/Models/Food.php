@@ -19,7 +19,7 @@ class Food extends Model
 
     public function order()
     {
-        return $this->belongsToMany(Orders::class, 'order_id');
+        return $this->belongsToMany(Orders::class);
     }
 
     // use HasFactory;

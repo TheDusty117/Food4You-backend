@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Food;
+use App\Models\Orders;
 use App\Models\Restaurant;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -20,6 +21,7 @@ class FoodSeeder extends Seeder
     public function run(Faker $faker)
     {
         $restaurant_ids = Restaurant::all()->pluck('id')->all();
+        $order_ids = Orders::all()->pluck('id')->all();
 
         $newFood = new Food();
         $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
@@ -127,5 +129,6 @@ class FoodSeeder extends Seeder
         $newFood->slug = Str::slug($newFood->name, '-');
 
         $newFood->save();
+        $newFood->order()->attach($faker->randomElements($order_ids, rand(1, 6)), ['quantity' => 5]);
     }
 }

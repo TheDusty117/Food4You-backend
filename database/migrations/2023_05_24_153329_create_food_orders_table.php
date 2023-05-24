@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('food_id');
             $table->foreign('food_id')->references('id')->on('food');
 
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->unsignedBigInteger('orders_id');
+            $table->foreign('orders_id')->references('id')->on('orders');
 
             $table->tinyInteger('quantity');
         });
