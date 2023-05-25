@@ -33,9 +33,7 @@ class FoodController extends Controller
      */
     public function create()
     {   
-        if($food->restaurant_id != Auth::id()){
-            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
-        } 
+
 
         return view('foods.create');
     }
