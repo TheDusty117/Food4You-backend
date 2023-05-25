@@ -22,8 +22,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        // $categories = Category::get();
-        return view('auth.register');
+
+        $categories = Category::orderBy('name','asc')->get();
+
+        return view('auth.register', compact('categories'));
     }
 
     /**
@@ -34,7 +36,8 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
 
     {
-        // dd($request);
+        //scommentami
+        // dd($request->all());
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -55,6 +58,8 @@ class RegisteredUserController extends Controller
         ]);
         //questo é un reset
         //creo restaurant(sx name nella table restaurant --- dx nome form)
+
+        // dd($request->all());
         $restaurant = Restaurant::create([
             'name' => $request->restaurant_name,
             'address' => $request->restaurant_address,
