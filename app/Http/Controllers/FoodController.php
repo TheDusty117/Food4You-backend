@@ -46,9 +46,7 @@ class FoodController extends Controller
      */
     public function store(StoreFoodRequest $request)
     {   
-        if($food->restaurant_id != Auth::id()){
-            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
-        } 
+
 
         $data = $request->validated();
         $data['restaurant_id'] = Auth::user()->restaurant->id;
