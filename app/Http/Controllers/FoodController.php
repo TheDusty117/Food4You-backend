@@ -6,6 +6,9 @@ use App\Models\Food;
 use App\Http\Requests\StoreFoodRequest;
 use App\Http\Requests\UpdateFoodRequest;
 use illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 class FoodController extends Controller
 {
@@ -16,7 +19,9 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $foods = Food::all();
+        $restaurant_id = Auth::id(); //recupero id utente loggato
+
+        $foods = Food::where('restaurant_id', $restaurant_id)->get();
 
         return view('foods.index', compact('foods'));
     }
@@ -40,13 +45,14 @@ class FoodController extends Controller
     public function store(StoreFoodRequest $request)
     {
         $data = $request->validated();
-
+        $data['restaurant_id'] = Auth::user()->restaurant->id;
         $data['slug'] = Str::slug($data['name']);
 
         $food = Food::create($data);
 
-        return to_route('foods.show', $food);
+        return redirect()->route('foods.show', $food);
     }
+
 
     /**
      * Display the specified resource.
@@ -84,7 +90,7 @@ class FoodController extends Controller
         $data = $request->validated();
 
         //if che fa cambiare lo slug di pari passo con il name che noi modifichiamo
-        if ($data['name'] !== $food->name){
+        if ($data['name'] !== $food->name) {
             $data['slug'] = Str::slug($data['name']);
         }
 
@@ -93,9 +99,6 @@ class FoodController extends Controller
         $food->update($data);
 
         return to_route('foods.show', $food);
-
-
-
     }
 
     /**
