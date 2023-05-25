@@ -171,7 +171,7 @@ class RestaurantSeeder extends Seeder
 
             $restaurant->save();
 
-            $restaurant->categories()->attach($faker->randomElements($category_ids, rand(1, 16)));
+            $restaurant->categories()->attach($faker->randomElements($category_ids, rand(1, 4)));
         }
     }
 }
