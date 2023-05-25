@@ -33,12 +33,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    //ROTTA CHE RIPRISTINA I FOOD ELIMINATI
+    Route::post('foos/{food:slug}/restore', [FoodController::class, 'restore'])->name('foods.restore')->withTrashed();
 
     //comando shortcut, che crea tutte e 4 le route(edit,update,destroy,show)
-    Route::resource('foods',FoodController::class)->parameters([
+    Route::resource('foods', FoodController::class)->parameters([
         'foods' => 'food:slug' //TRASFORMO ID IN SLUG, NELLE VARIE (index,show, ecc)
-    ]);
-
+    ])->withTrashed(['update', 'destroy', 'edit']);
 });
 
 

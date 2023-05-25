@@ -17,13 +17,21 @@ class FoodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $restaurant_id = Auth::id(); //recupero id utente loggato
+        $trashed = $request->input('trashed');
 
-        $foods = Food::where('restaurant_id', $restaurant_id)->get();
+        if ($trashed) {
+            $foods = Food::onlyTrashed()->get();
+        } else {
 
-        return view('foods.index', compact('foods'));
+            $foods = Food::where('restaurant_id', $restaurant_id)->get();
+        }
+
+        $num_trashed = Food::onlyTrashed()->count();
+
+        return view('foods.index', compact('foods', 'num_trashed'));
     }
 
     /**
@@ -127,6 +135,15 @@ class FoodController extends Controller
         return redirect()->route('foods.show', $food);
     }
 
+    public function restore(Food $food)
+    {
+        if ($food->trashed()) {
+            $food->restore();
+        }
+
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -135,8 +152,20 @@ class FoodController extends Controller
      */
     public function destroy(Food $food)
     {
-        if($food->restaurant_id != Auth::id()){
+
+         if($food->restaurant_id != Auth::id()){
             abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
         } 
+  
+        if ($food->trashed()) {
+            $food->forceDelete();
+        } else {
+            $food->delete();
+        }
+
+        return back();
+
+       
+
     }
 }
