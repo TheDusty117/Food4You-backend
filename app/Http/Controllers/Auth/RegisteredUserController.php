@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
 
     {
         //scommentami
-        // dd($request->all());
+        // dd($request->user_id());
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -48,6 +48,9 @@ class RegisteredUserController extends Controller
             'restaurant_vat' => ['required', 'min:11', 'max:11'],
             'restaurant_telephone_number' => ['nullable', 'min:7', 'max:10',],
 
+            'categories' => ['required','array','min:1'],
+            'categories_id' => ['exists:categories,id']
+
 
         ]);
 
@@ -56,8 +59,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        //questo é un reset
-        //creo restaurant(sx name nella table restaurant --- dx nome form)
+
 
         // dd($request->all());
         $restaurant = Restaurant::create([
@@ -67,8 +69,10 @@ class RegisteredUserController extends Controller
             'email' => $user->email, //nel ristorante viene inserita la mail dell'USER(su)
             'telephone_number' => $request->restaurant_telephone_number,
             'user_id' => $user->id,
-
+            // 'categories' => sync($request )
         ]);
+
+        $restaurant->categories()->sync($request->input('categories', []));
 
 
         event(new Registered($user));
