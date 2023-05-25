@@ -17,7 +17,10 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Prezzo</label>
-                <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="exampleInputEmail1" value="{{old('price')}}">
+                <div class="input-group">
+                    <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="exampleInputEmail1" value="{{old('price')}}">
+                    <span class="input-group-text">€</span>
+                </div>
                 @error('price')
                     <div class="invalid-feedback">
                         {{$message}}
