@@ -24,7 +24,7 @@ class StoreRestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'categories' => 'exists:categories,id'
         ];
     }
 }
