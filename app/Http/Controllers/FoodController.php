@@ -32,7 +32,11 @@ class FoodController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        if($food->restaurant_id != Auth::id()){
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
+        } 
+
         return view('foods.create');
     }
 
@@ -43,7 +47,11 @@ class FoodController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreFoodRequest $request)
-    {
+    {   
+        if($food->restaurant_id != Auth::id()){
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
+        } 
+
         $data = $request->validated();
         $data['restaurant_id'] = Auth::user()->restaurant->id;
         $data['slug'] = Str::slug($data['name']);
@@ -62,6 +70,11 @@ class FoodController extends Controller
      */
     public function show(Food $food)
     {
+        //questo controllo serve per far accedere alle varie crud solo all'utente authenticato corrispondente
+        if($food->restaurant_id != Auth::id()){
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
+        } 
+
         return view('foods.show', compact('food'));
     }
 
@@ -74,6 +87,10 @@ class FoodController extends Controller
      */
     public function edit(Food $food)
     {
+        if($food->restaurant_id != Auth::id()){
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
+        } 
+
         return view('foods.edit', compact('food'));
     }
 
@@ -86,6 +103,9 @@ class FoodController extends Controller
      */
     public function update(UpdateFoodRequest $request, Food $food)
     {
+        if($food->restaurant_id != Auth::id()){
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
+        } 
 
         $data = $request->validated();
 
@@ -109,6 +129,8 @@ class FoodController extends Controller
      */
     public function destroy(Food $food)
     {
-        //
+        if($food->restaurant_id != Auth::id()){
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
+        } 
     }
 }
