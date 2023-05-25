@@ -19,7 +19,9 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $foods = Food::all();
+        $restaurant_id = Auth::id(); //recupero id utente loggato
+
+        $foods = Food::where('restaurant_id', $restaurant_id)->get();
 
         return view('foods.index', compact('foods'));
     }

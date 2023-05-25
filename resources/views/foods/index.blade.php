@@ -23,12 +23,8 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Slug</th>
-                <th>Availability</th>
-                <th>Visibility</th>
-                <th>Created at</th>
-                <th>Updated at</th>
-
+                <th>Slug</th>                
+                <th>Visibility</th>     
                 {{-- thead di bottoni --}}
                 <th>Modifica</th>
                 <th>Cancella</th>
@@ -44,7 +40,6 @@
                 </td>
                 <td>{{ $food->price }}</td>
                 <td>{{ $food->slug }}</td>
-                <td>{{ $food->availability }}</td>
                 <td>{{ $food->visibility }}</td>
 
                 {{-- BOTTONI DI MODIFICA E CANCELLAZIONE --}}
