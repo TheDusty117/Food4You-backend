@@ -23,8 +23,8 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Slug</th>                
-                <th>Visibility</th>     
+                <th>Slug</th>
+                <th>Visibility</th>
                 {{-- thead di bottoni --}}
                 <th>Modifica</th>
                 <th>Cancella</th>
@@ -49,9 +49,12 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn btn-danger" href="{{ route('foods.destroy',$food) }}">
-                        X
-                    </a>
+                    <form action="{{ route( 'foods.destroy', $food) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <input type="submit" class="btn btn-danger" value="ELIMINA">
+                    </form>
                 </td>
 
             </tr>
