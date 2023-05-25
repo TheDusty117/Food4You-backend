@@ -17,6 +17,9 @@
                 <a class="btn btn-primary" href="{{ route('foods.create') }}">
                     Aggiungi cibo
                 </a>
+                <a href="{{ route('foods.index', ['trashed' => true ]) }}" class="btn btn-warning">
+                    Cestino <span> {{ $num_trashed }}</span>
+                </a>
             </div>
 
             <tr>
@@ -28,6 +31,11 @@
                 {{-- thead di bottoni --}}
                 <th>Modifica</th>
                 <th>Cancella</th>
+                <span>
+                    @if(request('trashed'))
+                    <th>Ripristina</th>
+                    @endif
+                </span>
 
             </tr>
         </thead>
@@ -42,12 +50,16 @@
                 <td>{{ $food->slug }}</td>
                 <td>{{ $food->visibility }}</td>
 
+
+
                 {{-- BOTTONI DI MODIFICA E CANCELLAZIONE --}}
                 <td>
                     <a class="btn btn-secondary" href="{{ route('foods.edit',$food) }}">
                         M
                     </a>
                 </td>
+
+
                 <td>
                     <form action="{{ route( 'foods.destroy', $food) }}" method="POST">
                         @csrf
@@ -56,7 +68,14 @@
                         <input type="submit" class="btn btn-danger" value="ELIMINA">
                     </form>
                 </td>
-
+                <td>
+                    @if($food->trashed())
+                    <form action="{{ route( 'foods.restore', $food) }}" method="POST">
+                        @csrf
+                        <input type="submit" class="btn btn-success" value="RIPRISTINA">
+                    </form>
+                    @endif
+                </td>
             </tr>
             @empty
             <tr>
