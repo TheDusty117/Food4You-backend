@@ -29,7 +29,7 @@ class FoodSeeder extends Seeder
         $newFood->price = 10.00;
         $newFood->ingredients = 'Bun con sesamo';
         $newFood->description = 'Il Panino, un grande classico, semplice ma buonissimo!';
-        $newFood->visibility = 1;
+        $newFood->visibility = 'public';
         $newFood->slug = Str::slug($newFood->name, '-');
         $newFood->save();
 
@@ -40,7 +40,7 @@ class FoodSeeder extends Seeder
         $newFood->price = 6.00;
         $newFood->ingredients = 'Impasto tradizionale, Pomodoro , Mozzarella';
         $newFood->description = 'Margherita napoletana, dal sapore tipico';
-        $newFood->visibility = 1;
+        $newFood->visibility = 'public';
         $newFood->slug = Str::slug($newFood->name, '-');
 
         $newFood->save();
@@ -52,7 +52,7 @@ class FoodSeeder extends Seeder
         $newFood->price = 18.00;
         $newFood->ingredients = 'Maiale sfilacciato, salsa barbecue, fagioli, coleslaw';
         $newFood->description = 'Vola in america con il nostro Pulled Pork!';
-        $newFood->visibility = 1;
+        $newFood->visibility = 'public';
         $newFood->slug = Str::slug($newFood->name, '-');
 
         $newFood->save();
@@ -64,7 +64,7 @@ class FoodSeeder extends Seeder
         $newFood->price = 12.00;
         $newFood->ingredients = 'Lattuga, salsa Worcestershire, aglio, Limone, Parmigiano, Olio EVO';
         $newFood->description = 'Rimani fit senza rinunciare a nulla con la nostra Ceasar Salad!';
-        $newFood->visibility = 1;
+        $newFood->visibility = 'public';
         $newFood->slug = Str::slug($newFood->name, '-');
 
         $newFood->save();
@@ -76,7 +76,7 @@ class FoodSeeder extends Seeder
         $newFood->price = 8.00;
         $newFood->ingredients = 'Spaghetti, Sugo di pomodori';
         $newFood->description = 'la grande tradizione italiana in un solo piatto!';
-        $newFood->visibility = 1;
+        $newFood->visibility = 'public';
         $newFood->slug = Str::slug($newFood->name, '-');
 
         $newFood->save();
@@ -88,7 +88,7 @@ class FoodSeeder extends Seeder
         $newFood->price = 20.00;
         $newFood->ingredients = 'Filetto di Black Angus, Vino Rosso, Sale, Pepe';
         $newFood->description = 'Il Filetto di Black Angus vi farà impazzire!';
-        $newFood->visibility = 1;
+        $newFood->visibility = 'public';
         $newFood->slug = Str::slug($newFood->name, '-');
 
         $newFood->save();
@@ -101,7 +101,7 @@ class FoodSeeder extends Seeder
         $newFood->price = 6.50;
         $newFood->ingredients = 'Waffle, Gelato alla vaniglia, Frutti di bosco, Caramello salato';
         $newFood->description = 'Waffle con gelato e frutta, perfetto per godersi un dolce fresco e saporito.';
-        $newFood->visibility = 1;
+        $newFood->visibility = 'public';
         $newFood->slug = Str::slug($newFood->name, '-');
 
         $newFood->save();
@@ -113,7 +113,7 @@ class FoodSeeder extends Seeder
         $newFood->price = 6.00;
         $newFood->ingredients = 'Cheescake, crema di pistacchio, pistacchio tritato';
         $newFood->description = 'Un classico inglese, ma con un twist Pistacchioso!';
-        $newFood->visibility = 1;
+        $newFood->visibility = 'public';
         $newFood->slug = Str::slug($newFood->name, '-');
 
         $newFood->save();
@@ -125,7 +125,7 @@ class FoodSeeder extends Seeder
         $newFood->price = 9.00;
         $newFood->ingredients = 'Gamberetti, Triglie, Acciughe, Merluzzetti, Calamari, Triglie';
         $newFood->description = 'La nostra frittura dal profumo inconfondibile, gustala ora!';
-        $newFood->visibility = 1;
+        $newFood->visibility = 'public';
         $newFood->slug = Str::slug($newFood->name, '-');
 
         $newFood->save();

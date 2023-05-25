@@ -2,24 +2,26 @@
 
 @section('content')
 
-<div>
-    <h1>Food index</h1>
-</div>
-
-
 <div class="container">
     <table class="table table-striped table-inverse table-responsive">
         <thead>
 
             {{-- aggiunta del cibo bottone --}}
             <div class="container py-4">
-                <h2>Questi sono i Foods</h2>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Restaurant Menù</h1>
+                
+                
                 <a class="btn btn-primary" href="{{ route('foods.create') }}">
                     Aggiungi cibo
                 </a>
+
                 <a href="{{ route('foods.index', ['trashed' => true ]) }}" class="btn btn-warning">
                     Cestino <span> {{ $num_trashed }}</span>
                 </a>
+
+                </div>
+
             </div>
 
             <tr>
@@ -46,7 +48,7 @@
                 <td>
                     <a href="{{ route('foods.show',$food) }}">{{ $food->name }}</a>
                 </td>
-                <td>{{ $food->price }}</td>
+                <td>{{ $food->price }} €</td>
                 <td>{{ $food->slug }}</td>
                 <td>{{ $food->visibility }}</td>
 
@@ -55,7 +57,7 @@
                 {{-- BOTTONI DI MODIFICA E CANCELLAZIONE --}}
                 <td>
                     <a class="btn btn-secondary" href="{{ route('foods.edit',$food) }}">
-                        M
+                        <i class="fas fa-wrench"></i>
                     </a>
                 </td>
 
@@ -69,6 +71,7 @@
                     </form>
                 </td>
                 <td>
+
                     @if($food->trashed())
                     <form action="{{ route( 'foods.restore', $food) }}" method="POST">
                         @csrf
@@ -76,6 +79,12 @@
                     </form>
                     @endif
                 </td>
+                    <a class="btn btn-danger" href="{{ route('foods.destroy',$food) }}">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+                
+
             </tr>
             @empty
             <tr>

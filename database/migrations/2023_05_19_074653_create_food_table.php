@@ -20,10 +20,9 @@ return new class extends Migration
             $table->decimal('price', 6, 2)->nullable();
             $table->string('ingredients', 150)->nullable();
             $table->text('description')->nullable();
-            // $table->tinyInteger('vegan')->default(0);
-            // $table->tinyInteger('spicy')->default(0);
-            // $table->tinyInteger('availability')->default(1);
-            $table->tinyInteger('visibility')->default(1);
+            $table->tinyInteger('vegan')->default(0);
+            $table->tinyInteger('spicy')->default(0);
+            $table->string('visibility')->default('public');
             //slug
             $table->string('slug');
             //softdeletes
