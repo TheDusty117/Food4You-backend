@@ -28,7 +28,10 @@
         <div class="mb-3">
 
             <label for="price" class="form-label">Inserisci il prezzo</label>
-            <input type="number" name="price" class="form-control" value="{{ old('price',$food->price) }}" id="price">
+            <div class="input-group">
+                <input type="number" name="price" class="form-control" value="{{ old('price',$food->price) }}" id="price">
+                <span class="input-group-text">€</span>
+            </div>
         </div>
         <div class="mb-3">
 
@@ -38,32 +41,29 @@
         <div class="mb-3">
 
             <label for="description" class="form-label">Inserisci una descrizione</label>
-            <textarea name="description" class="form-control " id="description" rows="6" cols="50">{{ old('price',$food->descrition) }}</textarea>
+            <textarea name="description" class="form-control" id="description" rows="6" cols="50">{{ old('description', $food->description ?? '') }}</textarea>
         </div>
 
 
 
         <div class='mb-3'>
             <div class="form-check form-switch">
-                <input class="form-check-input" value="" name='vegan' type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Vegano</label>
+                <input class="form-check-input" value="1" name='vegan' type="checkbox" role="switch" id="veganSwitch" {{ $food->vegan ? 'checked' : '' }}>
+                <label class="form-check-label" for="veganSwitch">Vegano</label>
             </div>
             <div class="form-check form-switch">
-                <input class="form-check-input" value="" name='spicy' type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Piccante</label>
+                <input class="form-check-input" value="1" name='spicy' type="checkbox" role="switch" id="spicySwitch" {{ $food->spicy ? 'checked' : '' }}>
+                <label class="form-check-label" for="spicySwitch">Piccante</label>
             </div>
             <div class="form-check form-switch">
-                <input class="form-check-input" value="" name='avaiability' type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Disponibile</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" value="" name='visibility' type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Visibile</label>
+                <input class="form-check-input" value="public" name='visibility' type="checkbox" role="switch" id="visibilitySwitch" {{ $food->visibility === 'public' ? 'checked' : '' }}>
+                <label class="form-check-label" for="visibilitySwitch">Visibiltà</label>
             </div>
         </div>
+        
 
         <button type="submit" class="btn btn-secondary">
-            Modifica cibo
+            Salva modifiche
         </button>
 
 
