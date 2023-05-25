@@ -22,8 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-
-        $categories = Category::orderBy('name','asc')->get();
+        $categories = Category::orderBy('name', 'asc')->get();
 
         return view('auth.register', compact('categories'));
     }
@@ -34,7 +33,6 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
-
     {
         //scommentami
         // dd($request->user_id());
@@ -61,12 +59,11 @@ class RegisteredUserController extends Controller
         ]);
 
 
-        // dd($request->all());
         $restaurant = Restaurant::create([
             'name' => $request->restaurant_name,
             'address' => $request->restaurant_address,
             'vat' => $request->restaurant_vat,
-            'email' => $user->email, //nel ristorante viene inserita la mail dell'USER(su)
+            'email' => $user->email,
             'telephone_number' => $request->restaurant_telephone_number,
             'user_id' => $user->id,
             // 'categories' => sync($request )
@@ -76,7 +73,6 @@ class RegisteredUserController extends Controller
 
 
         event(new Registered($user));
-
 
         Auth::login($user);
 
