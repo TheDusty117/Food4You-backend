@@ -12,7 +12,8 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::all();
 
         return response()->json([
-            'restaurants' => $restaurants,
+            'succes' => true,
+            'result' => $restaurants,
         ]);
     }
 }
