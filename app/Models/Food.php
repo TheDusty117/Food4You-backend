@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Restaurant;
+use App\Models\Orders;
 
 // use Illuminate\Database\Eloquent\HasFactory;
 
@@ -19,10 +20,12 @@ class Food extends Model
         return $this->belongsTo(Restaurant::class);
     }
 
-    public function order()
-    {
-        return $this->belongsToMany(Orders::class);
-    }
+    public function orders()
+{
+    return $this->belongsToMany(Order::class, 'food_orders', 'food_id', 'order_id')
+               ->withPivot('quantity');
+}
+
 
     // use HasFactory;
     use SoftDeletes;
