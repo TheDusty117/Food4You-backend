@@ -14,6 +14,13 @@
             <p class="mb-2">Visibile: {{ $food->visibility === 'public' ? 'Public' : 'Private' }}</p>
             <p class="mb-2">Slug: {{ $food->slug }}</p>
 
+            @if ($food->image)
+            <div class="mb-4">
+                <h3>Immagine</h3>
+                <img src="{{ asset('storage/' . $food->image) }}" alt="Food Image" style="max-width: 100%;">
+            </div>
+            @endif
+
             <a href="{{ route('foods.index') }}" class="btn btn-secondary mt-4">Torna all'elenco</a>
             <a href="{{ route('foods.edit', $food) }}" class="btn btn-primary mt-4">Modifica</a>
 
