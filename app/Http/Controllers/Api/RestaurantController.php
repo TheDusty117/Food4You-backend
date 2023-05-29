@@ -9,7 +9,7 @@ use App\Models\Restaurant;
 class RestaurantController extends Controller
 {
     public function index(){
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::with('categories')->paginate(5);
 
         return response()->json([
             'success' => true,
