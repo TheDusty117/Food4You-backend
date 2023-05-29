@@ -8,6 +8,10 @@ use App\Http\Requests\UpdateFoodRequest;
 use illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Exceptions\PostTooLargeException;
+use Illuminate\Support\Facades\DB;
 
 
 class FoodController extends Controller
@@ -40,7 +44,7 @@ class FoodController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
 
 
         return view('foods.create');
@@ -53,17 +57,22 @@ class FoodController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreFoodRequest $request)
-    {   
-
-
+    {
         $data = $request->validated();
         $data['restaurant_id'] = Auth::user()->restaurant->id;
         $data['slug'] = Str::slug($data['name']);
+
+        // Carica l'immagine
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('food_images', 'public');
+            $data['image'] = $imagePath;
+        }
 
         $food = Food::create($data);
 
         return redirect()->route('foods.show', $food);
     }
+
 
 
     /**
@@ -75,9 +84,9 @@ class FoodController extends Controller
     public function show(Food $food)
     {
         //questo controllo serve per far accedere alle varie crud solo all'utente authenticato corrispondente
-        if($food->restaurant_id != Auth::id()){
-            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
-        } 
+        if ($food->restaurant_id != Auth::id()) {
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');
+        }
 
         return view('foods.show', compact('food'));
     }
@@ -91,9 +100,9 @@ class FoodController extends Controller
      */
     public function edit(Food $food)
     {
-        if($food->restaurant_id != Auth::id()){
-            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
-        } 
+        if ($food->restaurant_id != Auth::id()) {
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');
+        }
 
         return view('foods.edit', compact('food'));
     }
@@ -107,29 +116,44 @@ class FoodController extends Controller
      */
     public function update(UpdateFoodRequest $request, Food $food)
     {
+        try {
+            if ($food->restaurant_id != Auth::id()) {
+                abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');
+            }
 
-        if($food->restaurant_id != Auth::id()){
-            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
-        } 
+            $data = $request->validated();
 
+            // Aggiungi la logica per i checkbox
+            $data['vegan'] = $request->has('vegan');
+            $data['spicy'] = $request->has('spicy');
+            $data['visibility'] = $request->has('visibility') ? 'public' : 'private';
 
-        $data = $request->validated();
+            // Aggiorna il valore dello slug solo se il nome viene modificato
+            if ($data['name'] !== $food->name) {
+                $data['slug'] = Str::slug($data['name']);
+            }
 
-        // Aggiungi la logica per i checkbox
-        $data['vegan'] = $request->has('vegan');
-        $data['spicy'] = $request->has('spicy');
-        $data['visibility'] = $request->has('visibility') ? 'public' : 'private';
+            // Carica l'immagine se è stata fornita
+            if ($request->hasFile('image')) {
+                // Elimina l'immagine precedente se presente
+                if ($food->image) {
+                    Storage::disk('public')->delete($food->image);
+                }
+                $imagePath = $request->file('image')->store('foods', 'public');
+                $data['image'] = $imagePath;
+            }
 
-        // Aggiorna il valore dello slug solo se il nome viene modificato
-        if ($data['name'] !== $food->name) {
-            $data['slug'] = Str::slug($data['name']);
+            // Aggiorna il cibo nel database
+            $food->update($data);
+
+            return redirect()->route('foods.show', $food);
+        } catch (PostTooLargeException $e) {
+            // Gestione dell'eccezione "PostTooLargeException"
+            // Ad esempio, puoi reindirizzare l'utente a una pagina di errore con un messaggio appropriato
+            return redirect()->back()->with('error', 'La dimensione del file supera il limite consentito.');
         }
-
-        // Aggiorna il cibo nel database
-        $food->update($data);
-
-        return redirect()->route('foods.show', $food);
     }
+
 
     public function restore(Food $food)
     {
@@ -149,10 +173,10 @@ class FoodController extends Controller
     public function destroy(Food $food)
     {
 
-         if($food->restaurant_id != Auth::id()){
-            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');   
-        } 
-  
+        if ($food->restaurant_id != Auth::id()) {
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');
+        }
+
         if ($food->trashed()) {
             $food->forceDelete();
         } else {
@@ -160,8 +184,5 @@ class FoodController extends Controller
         }
 
         return back();
-
-       
-
     }
 }

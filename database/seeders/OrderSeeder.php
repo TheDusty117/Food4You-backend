@@ -5,10 +5,10 @@ namespace Database\Seeders;
 use App\Models\Food;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Orders;
+use App\Models\Order;
 use Faker\Factory as Faker;
 
-class OrdersSeeder extends Seeder
+class OrderSeeder extends Seeder
 {
     public function run()
     {
@@ -17,7 +17,7 @@ class OrdersSeeder extends Seeder
         $food_ids = Food::all()->pluck('id')->all();
 
         for ($i = 1; $i <= 20; $i++) {
-            Orders::create([
+            Order::create([
                 'address' => $faker->streetAddress . ', Roma',
                 'name' => $faker->name,
                 'order_price' => $faker->randomFloat(2, 10, 100),

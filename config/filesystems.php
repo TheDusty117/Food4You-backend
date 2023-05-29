@@ -32,9 +32,11 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
-            'throw' => false,
+            'root' => public_path('images'), // Percorso completo della cartella di destinazione
+            'url' => env('APP_URL').'/images', // URL pubblico delle immagini
+            'visibility' => 'public',
         ],
+        
 
         'public' => [
             'driver' => 'local',

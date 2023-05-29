@@ -4,7 +4,7 @@
     <div>
         <h1>Food create</h1>
 
-        <form class="px-5 my-3" method="POST" action="{{route('foods.store')}}">
+        <form class="px-5 my-3" method="POST" action="{{route('foods.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
               <label class="form-label">Nome del cibo</label>
@@ -47,9 +47,13 @@
                         </div>
                     @enderror
                 </div>
-
-
             </div>
+
+            <div class="mb-3">
+                 <label for="image" class="form-label">Carica immagine</label>
+                 <input type="file" name="image" class="form-control" id="image">
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Salva nuovo cibo</button>
 
