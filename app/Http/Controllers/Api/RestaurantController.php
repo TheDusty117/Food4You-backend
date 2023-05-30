@@ -22,7 +22,7 @@ class RestaurantController extends Controller
 
     public function show($slug){
 
-        $restaurant = Restaurant::with('categories.restaurants')->where('slug',$slug)->first();
+        $restaurant = Restaurant::with(['categories','food'])->where('slug',$slug)->first();
 
 
 
