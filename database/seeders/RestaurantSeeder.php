@@ -165,6 +165,8 @@ class RestaurantSeeder extends Seeder
             $restaurant->telephone_number = str_replace('.', '', $restaurant->telephone_number); // Rimuovi punti
             $restaurant->telephone_number = '+39' . substr($restaurant->telephone_number, -10); // Aggiungi prefisso italiano
 
+            $restaurant->slug = Str::slug($restaurant->name, '-');
+
             $restaurant->email = Str::slug($restaurant->name, '') . '@food4you.com';
             $restaurant->vat = 'IT' . random_int(100000000, 999999999);
             $restaurant->user_id = $user_id;

@@ -105,10 +105,12 @@ class FoodSeeder extends Seeder
             // Genera un'immagine casuale utilizzando il faker
             $imagePath = $faker->image('public/images/foods', 400, 300, null, false);
             $newFood->image = $imagePath;
-
+            
             $newFood->save();
+            $newFood->orders()->attach($faker->randomElements($orders_ids, rand(1, 6)), ['quantity' => 5]);
         }
+        
 
-        $newFood->orders()->attach($faker->randomElements($orders_ids, rand(1, 6)), ['quantity' => 5]);
+        
     }
 }
