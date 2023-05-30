@@ -36,3 +36,5 @@ class Restaurant extends Model
         return $this->hasMany(Food::class);
     }
 }
+
+//  questo commento serve a nulla
