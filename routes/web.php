@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //ROTTA CHE RIPRISTINA I FOOD ELIMINATI
-    Route::post('foos/{food:slug}/restore', [FoodController::class, 'restore'])->name('foods.restore')->withTrashed();
+    Route::post('foods/{food:slug}/restore', [FoodController::class, 'restore'])->name('foods.restore')->withTrashed();
 
     //comando shortcut, che crea tutte e 4 le route(edit,update,destroy,show)
     Route::resource('foods', FoodController::class)->parameters([

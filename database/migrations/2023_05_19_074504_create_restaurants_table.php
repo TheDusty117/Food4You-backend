@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('telephone_number', 20)->nullable();
             $table->string('email', 100)->nullable();
             $table->string('vat', 11)->notnull();
+
+             //slug
+            $table->string('slug');
+            
             $table->timestamps();
         });
     }
