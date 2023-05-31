@@ -3,9 +3,13 @@
 @section('content')
 
 <div class="container">
+    <h1 class="my-4">Nuovo cibo: {{ $food->name }}</h1>
+</div>
+
+<div class="container">
     <div class="card bg-light">
         <div class="card-body">
-            <h1 class="mb-4">{{ $food->name }}</h1>
+            
             <p class="mb-2">Ingredienti: {{ $food->ingredients }}</p>
             <p class="mb-2">Descrizione: {{ $food->description }}</p>
             <p class="mb-2">Prezzo: {{ $food->price }}</p>
@@ -21,11 +25,16 @@
             </div>
             @endif
 
-            <a href="{{ route('foods.index') }}" class="btn btn-secondary mt-4">Torna all'elenco</a>
-            <a href="{{ route('foods.edit', $food) }}" class="btn btn-primary mt-4">Modifica</a>
+
 
         </div>
     </div>
 </div>
+
+<div class="container">
+    <a href="{{ route('foods.index') }}" class="btn btn-secondary mt-4">Torna all'elenco</a>
+    <a href="{{ route('foods.edit', $food) }}" class="btn btn-primary mt-4">Modifica</a>
+</div>
+
 
 @endsection
