@@ -121,7 +121,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA*') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="restaurant_vat" type="number"
+                                    <input id="restaurant_vat" type="text"
                                         class="form-control @error('restaurant_vat') is-invalid @enderror"
                                         name="restaurant_vat" value="{{ old('restaurant_vat') }}" required
                                         autocomplete="restaurant_vat" autofocus>
@@ -143,7 +143,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Numero di Telefono') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="restaurant_telephone_number" type="number"
+                                    <input id="restaurant_telephone_number" type="text"
                                         class="form-control @error('restaurant_telephone_number') is-invalid @enderror"
                                         name="restaurant_telephone_number" value="{{ old('restaurant_telephone_number') }}"
                                         required autocomplete="restaurant_telephone_number" autofocus>
