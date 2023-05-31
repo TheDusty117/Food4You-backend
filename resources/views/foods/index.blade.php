@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <table class="table table-striped table-inverse table-responsive">
+    <table class="table  table-bordered table-responsive">
         <thead>
 
             {{-- aggiunta del cibo bottone --}}
@@ -17,34 +17,32 @@
                         Aggiungi un nuovo cibo
                     </a>
 
-                    
-                    <a href="{{ route('foods.index', ['trashed' => true ]) }}" class="btn btn-warning">
+                    {{-- COLLEGAMENTO AL CESTINO --}}
+                    {{-- <a href="{{ route('foods.index', ['trashed' => true ]) }}" class="btn btn-warning">
                         Cestino <span> {{ $num_trashed }}</span>
-                    </a>
+                    </a> --}}
 
                 </div>
 
             </div>
 
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
+                <th scope="col">ID</th>
+                <th scope="col">Cibo</th>
+                <th scope="col">Prezzo</th>
                 
-                <th>Visibilità</th>
+                <th scope="col">Visibilità</th>
                 
-                <th>Azioni</th>
-                
-    
-                
-                
+                <th scope="col">Azioni</th>
+  
             </tr>
 
         </thead>
-        @forelse ($foods as $food)
         <tbody>
+            @forelse ($foods as $food)
             <tr>
-                <td >{{ $food->id }}</td>
+                <th scope='row'>{{ $food->id }}</th>
+                
                 <td>
                     <a href="{{ route('foods.show',$food) }}">{{ $food->name }}</a>
                 </td>
@@ -55,31 +53,31 @@
 
 
                 {{-- BOTTONI DI MODIFICA E CANCELLAZIONE --}}
-                <td>
+
+                <td class="d-flex">
+                    <a class="btn btn-secondary me-4" href="{{ route('foods.edit',$food) }}">
+                        
+                        
+                        <p class="my-auto">MODIFICA</p>
+                    </a>
                     <form class="d-flex justify-content-start" action="{{ route( 'foods.destroy', $food) }}" method="POST">
                         
-                        <span class="btn btn-secondary me-4" href="{{ route('foods.edit',$food) }}">
-                            
-                            {{-- <i class="fas fa-wrench pe-2"> </i> <p>Modifica</p> --}}
-                            <p>Modifica</p>
-                        </span>
-                        
-                
                         @csrf
                         @method('DELETE')
 
                         <input class="btn btn-danger me-4" type="submit" value="ELIMINA">
-
-
-                        @if($food->trashed())
-                        <form action="{{ route( 'foods.restore', $food) }}" method="POST">
-                            @csrf
-                            <input type="submit" class="btn btn-success me-4" value="RIPRISTINA">
-                            
-                        </form>
-                        @endif
                     </form>
+
+                    
+                    @if($food->trashed())
+                    <form action="{{ route( 'foods.restore', $food) }}" method="POST">
+                        @csrf
+                        <input type="submit" class="btn btn-success me-4" value="RIPRISTINA">
+                        
+                    </form>
+                    @endif
                 </td>
+             
                 
 
 
@@ -104,6 +102,7 @@
         </table>
         <a href="{{ route('foods.index') }}" class="btn btn-secondary mt-4">Torna all'elenco</a>
         @endforelse
+        
     
 </div>
 

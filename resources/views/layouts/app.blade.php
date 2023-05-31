@@ -49,7 +49,7 @@
                         </li>
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('foods.index') }}">{{ __('Foods') }}</a>
+                            <a class="nav-link" href="{{ route('foods.index') }}">{{ __('Menù') }}</a>
                         </li>
                         @endauth
                     </ul>
