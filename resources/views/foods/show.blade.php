@@ -13,10 +13,10 @@
             <p class="mb-2">Ingredienti: {{ $food->ingredients }}</p>
             <p class="mb-2">Descrizione: {{ $food->description }}</p>
             <p class="mb-2">Prezzo: {{ $food->price }}</p>
-            <p class="mb-2">Vegano: {{ $food->vegan ? 'Sì' : 'No' }}</p>
-            <p class="mb-2">Piccante: {{ $food->spicy ? 'Sì' : 'No' }}</p>
+            {{-- <p class="mb-2">Vegano: {{ $food->vegan ? 'Sì' : 'No' }}</p>
+            <p class="mb-2">Piccante: {{ $food->spicy ? 'Sì' : 'No' }}</p> --}}
             <p class="mb-2">Visibile: {{ $food->visibility === 'public' ? 'Public' : 'Private' }}</p>
-            <p class="mb-2">Slug: {{ $food->slug }}</p>
+            {{-- <p class="mb-2">Slug: {{ $food->slug }}</p> --}}
 
             @if ($food->image)
             <div class="mb-4">
