@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
 
 
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $users = new User();
             $users->name = $faker->name();
             $users->email = Str::slug($users->name, '') . $collection->random();
