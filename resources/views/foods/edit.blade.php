@@ -4,7 +4,7 @@
 
 <div class="container">
     <h1>
-        Modifica: {{ $food->name }}
+        Modifica cibo: {{ $food->name }}
     </h1>
     <form action="{{ route('foods.update', $food) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -36,21 +36,27 @@
         </div>
 
         <div class="mb-3">
+            
+            
             <div class="form-check form-switch">
+                <input class="form-check-input" value="public" name='visibility' type="checkbox" role="switch" id="visibilitySwitch" {{ $food->visibility === 'public' ? 'checked' : '' }}>
+                <label class="form-check-label" for="visibilitySwitch">Visibilità</label>
+            </div>
+
+            {{-- PICCANTE E VEGANO --}}
+            {{--<div class="form-check form-switch">
                 <input class="form-check-input" value="1" name='vegan' type="checkbox" role="switch" id="veganSwitch" {{ $food->vegan ? 'checked' : '' }}>
                 <label class="form-check-label" for="veganSwitch">Vegano</label>
             </div>
             <div class="form-check form-switch">
                 <input class="form-check-input" value="1" name='spicy' type="checkbox" role="switch" id="spicySwitch" {{ $food->spicy ? 'checked' : '' }}>
                 <label class="form-check-label" for="spicySwitch">Piccante</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" value="public" name='visibility' type="checkbox" role="switch" id="visibilitySwitch" {{ $food->visibility === 'public' ? 'checked' : '' }}>
-                <label class="form-check-label" for="visibilitySwitch">Visibilità</label>
-            </div>
+            </div> 
+             --}}
         </div>
         
         <button type="submit" class="btn btn-secondary">
             Salva modifiche
         </button>
     </form>
+@endsection
