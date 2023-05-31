@@ -40,6 +40,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('foods', FoodController::class)->parameters([
         'foods' => 'food:slug' //TRASFORMO ID IN SLUG, NELLE VARIE (index,show, ecc)
     ])->withTrashed(['update', 'destroy', 'edit']);
+
+
+    //PROVA CARRELLO E SCOMMENTA IN CASO NON FUNZA================
+    Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::post('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update');
+    Route::get('/cart/view', [CartController::class, 'viewCart'])->name('cart.view');
+
 });
 
 
