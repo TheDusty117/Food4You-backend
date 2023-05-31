@@ -9,7 +9,7 @@
 <div class="container">
     <div class="card bg-light">
         <div class="card-body">
-            
+            <p class="mb-2">Nome: {{ $food->name }}</p>
             <p class="mb-2">Ingredienti: {{ $food->ingredients }}</p>
             <p class="mb-2">Descrizione: {{ $food->description }}</p>
             <p class="mb-2">Prezzo: {{ $food->price }}</p>
