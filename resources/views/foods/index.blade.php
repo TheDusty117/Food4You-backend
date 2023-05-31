@@ -2,29 +2,31 @@
 
 @section('content')
 
+{{-- aggiunta del cibo bottone --}}
+<div class="container py-4">
+    <h1>Menù del risotrante</h1>
+    <div class="d-flex justify-content-start align-items-center py-3">
+        
+    
+    
+        <a class="btn btn-primary me-3" href="{{ route('foods.create') }}">
+            Aggiungi un nuovo cibo
+        </a>
+
+        {{-- COLLEGAMENTO AL CESTINO --}}
+        {{-- <a href="{{ route('foods.index', ['trashed' => true ]) }}" class="btn btn-warning">
+            Cestino <span> {{ $num_trashed }}</span>
+        </a> --}}
+
+    </div>
+
+</div>
+
 <div class="container">
     <table class="table  table-bordered table-responsive">
         <thead>
 
-            {{-- aggiunta del cibo bottone --}}
-            <div class="container py-4">
-                <h1>Menù del risotrante</h1>
-                <div class="d-flex justify-content-start align-items-center py-3">
-                    
-                
-                
-                    <a class="btn btn-primary me-3" href="{{ route('foods.create') }}">
-                        Aggiungi un nuovo cibo
-                    </a>
 
-                    {{-- COLLEGAMENTO AL CESTINO --}}
-                    {{-- <a href="{{ route('foods.index', ['trashed' => true ]) }}" class="btn btn-warning">
-                        Cestino <span> {{ $num_trashed }}</span>
-                    </a> --}}
-
-                </div>
-
-            </div>
 
             <tr>
                 <th scope="col">ID</th>
@@ -91,7 +93,7 @@
 
                             <p>Nessun cibo inserito</p>
                             
-                            <a class="btn btn-secondary " href="{{ route('foods.create') }}">
+                            <a class="btn btn-warning " href="{{ route('foods.create') }}">
                                 Aggiungi cibo
                             </a>
                         </div>
