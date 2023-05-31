@@ -66,7 +66,7 @@ class RegisteredUserController extends Controller
             'email' => $user->email,
             'telephone_number' => $request->restaurant_telephone_number,
             'user_id' => $user->id,
-            // 'categories' => sync($request )
+
         ]);
 
         $restaurant->categories()->sync($request->input('categories', []));
