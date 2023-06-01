@@ -15,7 +15,8 @@ class Restaurant extends Model
         'telephone_number',
         'email',
         'vat',
-        'user_id'
+        'user_id',
+        'slug',
     ];
 
 
