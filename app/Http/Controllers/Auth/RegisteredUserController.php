@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
+
 
 class RegisteredUserController extends Controller
 {
@@ -66,6 +68,7 @@ class RegisteredUserController extends Controller
             'email' => $user->email,
             'telephone_number' => $request->restaurant_telephone_number,
             'user_id' => $user->id,
+            'slug' => Str::slug($request->restaurant_name, '-'),
 
         ]);
 
