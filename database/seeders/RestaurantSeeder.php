@@ -28,7 +28,7 @@ class RestaurantSeeder extends Seeder
             "Thai Orchid",
             "Bollywood Bites",
             "The Lounge Oasis",
-            "Delicious Destination",
+            // "Delicious Destination",
         ];
         $categoryRestaurants = [
             ['italiano', 'primi piatti', 'secondi piatti', 'pizze'],
@@ -40,6 +40,17 @@ class RestaurantSeeder extends Seeder
             ['panini', 'indiano', 'primi piatti', 'carne'],
             ['internazionale', 'panini', 'carne', 'pesce'],
             ['internazionale', 'panini', 'carne', 'pesce'],
+        ];
+        $restaurantImages = [
+            '/images/NONNO.png',
+            '/images/SAKURA.png',
+            '/images/PANDA.png',
+            '/images/EASTMEETWEST.png',
+            '/images/ELSOMBRERO.png',
+            '/images/THAIORCHID.png',
+            '/images/BOLLYWOOD.png',
+            '/images/LOUNGEOASIS.png',
+            // '/images/polpette.png',
         ];
 
         $category_ids = Category::all()->pluck('id')->all();
@@ -54,6 +65,7 @@ class RestaurantSeeder extends Seeder
         foreach ($user_ids as $user_id) {
             $restaurant = new Restaurant();
             $restaurant->name = $restaurantNames[$restaurantIndex];
+            $restaurant->img_restaurant = $restaurantImages[$restaurantIndex];
             $restaurantIndex = ($restaurantIndex + 1) % $restaurantCount;
 
             $restaurant->address = $faker->streetAddress . ', Roma';
