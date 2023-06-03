@@ -31,11 +31,11 @@ class FoodSeeder extends Seeder
         'image' => '/images/agnolotti.png',
       ],
       [
-        'name' => 'Baccalà con patate e olive nere',
-        'price' => 18.00,
-        'ingredients' => 'Baccalà, patate, olive nere, aglio, prezzemolo',
-        'description' => 'Un piatto tradizionale a base di baccalà, patate e olive nere, condito con aglio e prezzemolo. Una combinazione di sapori mediterranei che delizierà il palato.',
-        'image' => '/images/baccala.png',
+        'name' => 'Polpette al sugo',
+        'price' => 11.00,
+        'ingredients' => 'Polpette di carne, sugo',
+        'description' => 'Un piatto tradizionale che delizierà il palato.',
+        'image' => '/images/polpette.png',
       ],
       [
         'name' => 'Spaghetti alla carbonara',
@@ -63,7 +63,7 @@ class FoodSeeder extends Seeder
         'price' => 6.00,
         'ingredients' => 'Savoiardi, mascarpone, uova, caffè, cacao',
         'description' => 'Il tiramisù è un dolce al cucchiaio preparato con savoiardi, mascarpone, uova, caffè e cacao. Un dessert classico e irresistibile.',
-        'image' => '/images/tiramisu.png',
+        'image' => '/images/tirami.png',
       ],
       [
         'name' => 'Pizza Margherita',
