@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('telephone_number', 20)->nullable();
             $table->string('email', 100)->nullable();
             $table->string('vat', 11)->notnull();
+            $table->string('img_restaurant')->nullable();
 
-             //slug
+            //slug
             $table->string('slug')->default(Str::random(10));
 
             $table->timestamps();
@@ -40,4 +41,3 @@ return new class extends Migration
         Schema::dropIfExists('restaurants');
     }
 };
-

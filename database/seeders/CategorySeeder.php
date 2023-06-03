@@ -16,7 +16,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['italiano','internazionale','cinese','fusion','messicano','thailandese','indiano','giapponese','carne','pesce','panini','fast food','primi piatti','secondi piatti','lounge bar','food & drink'];
+        $categories = ['italiano', 'internazionale', 'indiano', 'messicano', 'giapponese', 'thailandese', 'fusion', 'cinese', 'primi piatti', 'secondi piatti', 'pizze', 'panini', 'carne', 'pesce'];
 
         foreach ($categories as $category_name) {
             $category = new Category();
@@ -25,4 +25,3 @@ class CategorySeeder extends Seeder
         }
     }
 }
-
