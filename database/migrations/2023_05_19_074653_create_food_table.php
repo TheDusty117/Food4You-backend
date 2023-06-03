@@ -3,9 +3,12 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
+    private $tableName = 'food';
+
     /**
      * Run the migrations.
      *
@@ -23,13 +26,24 @@ return new class extends Migration
             $table->tinyInteger('vegan')->default(0);
             $table->tinyInteger('spicy')->default(0);
             $table->string('visibility')->default('public');
-            //slug
-            $table->string('slug');
-            //softdeletes
+            $table->string('slug')->unique();
             $table->softDeletes();
-
             $table->timestamps();
         });
+
+        // Generazione automatica dello slug e del valore di sequence
+        \Illuminate\Support\Facades\DB::statement("ALTER TABLE food AUTO_INCREMENT = 1");
+
+        $foods = \Illuminate\Support\Facades\DB::table('food')
+            ->orderBy('id')
+            ->get();
+
+        foreach ($foods as $index => $food) {
+            $sequence = $index + 1;
+            \Illuminate\Support\Facades\DB::table('food')
+                ->where('id', $food->id)
+                ->update(['sequence' => $sequence]);
+        }
     }
 
     /**
@@ -39,6 +53,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('food');
+        Schema::dropIfExists($this->tableName);
     }
 };

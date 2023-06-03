@@ -3,308 +3,508 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Food;
-use App\Models\Order;
 use App\Models\Restaurant;
-use Illuminate\Support\Str;
-use Faker\Generator as Faker;
+use App\Models\Food;
 
 class FoodSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run(Faker $faker)
-    {
-        $restaurant_ids = Restaurant::all()->pluck('id')->toArray();
-        $orders_ids = Order::all()->pluck('id')->toArray();
+  /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
+  public function run()
+  {
+    $restaurants = [
+      [
+        'name' => 'Sakura',
+        'foods' => [
+          [
+            'name' => 'Sushi misto',
+            'price' => 12.00,
+            'ingredients' => 'Una selezione di nigiri e maki',
+            'description' => 'Un\'ottima scelta per gli amanti del sushi',
+            'image' => 'sushi-misto.jpg',
+          ],
+          [
+            'name' => 'Tempura di verdure miste',
+            'price' => 8.50,
+            'ingredients' => 'Verdure, pastella leggera',
+            'description' => 'Un delizioso antipasto croccante',
+            'image' => 'tempura-verdure.jpg',
+          ],
+          [
+            'name' => 'Tonkatsu (maiale impanato)',
+            'price' => 10.50,
+            'ingredients' => 'Maiale, pangrattato, salsa tonkatsu, cavolo',
+            'description' => 'Un gustoso piatto di maiale impanato servito con salsa tonkatsu e cavolo fresco',
+            'image' => 'tonkatsu.jpg',
+          ],
+          [
+            'name' => 'Udon con tempura di gamberi',
+            'price' => 10.50,
+            'ingredients' => 'Udon, gamberi, tempura, verdure',
+            'description' => 'Una deliziosa zuppa di udon con croccante tempura di gamberi',
+            'image' => 'udon-tempura-gamberi.jpg',
+          ],
+          [
+            'name' => 'Sashimi di salmone fresco',
+            'price' => 14.00,
+            'ingredients' => 'Salmone fresco',
+            'description' => 'Un piatto di sashimi con fette di salmone fresco di alta qualità',
+            'image' => 'sashimi-salmone.jpg',
+          ],
+          [
+            'name' => 'Yakitori',
+            'price' => 8.50,
+            'ingredients' => 'Pollo, salsa teriyaki',
+            'description' => 'Deliziosi spiedini di pollo alla griglia con salsa teriyaki',
+            'image' => '/images/sakura/yakitori.jpg',
+          ],
+          [
+            'name' => 'Gyoza',
+            'price' => 6.50,
+            'ingredients' => 'Carne di maiale, verdure, salsa di soia',
+            'description' => 'Deliziosi ravioli giapponesi al vapore o fritti, ripieni di carne di maiale e verdure',
+            'image' => 'gyoza.jpg',
+          ],
+          [
+            'name' => 'Miso ramen',
+            'price' => 10.50,
+            'ingredients' => 'Noodles, brodo di miso, uova, carne di maiale, alghe',
+            'description' => 'Una gustosa zuppa di noodles al miso arricchita con uova, carne di maiale e alghe',
+            'image' => 'miso-ramen.jpg',
+          ],
+        ],
+      ],
+      [
+        'name' => 'Panda Express',
+        'foods' => [
+          [
+            'name' => 'Pollo all\'arancia',
+            'price' => 9.50,
+            'ingredients' => 'Pollo, salsa all\'arancia, verdure',
+            'description' => 'Un piatto classico di pollo con salsa all\'arancia',
+            'image' => '/images/panda-express/pollo-arancia.jpg',
+          ],
+          [
+            'name' => 'Manzo in salsa agrodolce',
+            'price' => 10.50,
+            'ingredients' => 'Manzo, salsa agrodolce, verdure',
+            'description' => 'Una deliziosa combinazione di manzo tenero e salsa agrodolce',
+            'image' => '/images/panda-express/manzo-salsa-agrodolce.jpg',
+          ],
+          [
+            'name' => 'Gamberi Kung Pao',
+            'price' => 11.00,
+            'ingredients' => 'Gamberi, peperoncino, arachidi, verdure',
+            'description' => 'Gamberi saltati con peperoncino e arachidi croccanti',
+            'image' => '/images/panda-express/gamberi-kung-pao.jpg',
+          ],
+          [
+            'name' => 'Chow Mein',
+            'price' => 8.50,
+            'ingredients' => 'Noodles, verdure, carne o pollo',
+            'description' => 'Noodles saltati in padella con verdure e carne o pollo',
+            'image' => '/images/panda-express/chow-mein.jpg',
+          ],
+          [
+            'name' => 'Pollo al limone',
+            'price' => 9.00,
+            'ingredients' => 'Pollo, limone, salsa di soia, verdure',
+            'description' => 'Gustoso pollo cotto al limone con verdure',
+            'image' => '/images/panda-express/pollo-limone.jpg',
+          ],
+          [
+            'name' => 'Maiale al peperoncino',
+            'price' => 9.50,
+            'ingredients' => 'Maiale, peperoncino, salsa agrodolce, verdure',
+            'description' => 'Maiale cotto con peperoncino piccante e salsa agrodolce',
+            'image' => '/images/panda-express/maiale-peperoncino.jpg',
+          ],
+          [
+            'name' => 'Riso fritto Yangzhou',
+            'price' => 7.50,
+            'ingredients' => 'Riso, uova, gamberetti, piselli, carote',
+            'description' => 'Un delizioso piatto di riso fritto con uova, gamberetti, piselli e carote',
+            'image' => '/images/panda-express/riso-fritto-yangzhou.jpg',
+          ],
+          [
+            'name' => 'Involtini primavera',
+            'price' => 5.50,
+            'ingredients' => 'Verdure miste, carne di maiale o gamberi, salsa agrodolce',
+            'description' => 'Deliziosi involtini primavera croccanti ripieni di verdure e carne',
+            'image' => '/images/panda-express/involtini-primavera.jpg',
+          ]
+        ],
+      ],
+      [
+        'name' => 'East Meets West',
+        'foods' => [
+          [
+            'name' => 'Salmone alla griglia con salsa teriyaki',
+            'price' => 18.00,
+            'ingredients' => 'Salmone fresco, salsa teriyaki, contorno di riso pilaf',
+            'description' => 'Un succulento salmone alla griglia con una delicata salsa teriyaki. Servito con un contorno di riso pilaf.',
+            'image' => '',
+          ],
+          [
+            'name' => 'Insalata di avocado e edamame',
+            'price' => 10.00,
+            'ingredients' => 'Avocado, edamame, mix di verdure, dressing leggero',
+            'description' => 'Un\'insalata fresca e colorata con avocado, edamame e un mix di verdure croccanti. Condita con un dressing leggero.',
+            'image' => '/images/east-meets-west/insalata-di-avocado-edamame.jpg',
+          ],
+          [
+            'name' => 'Pollo al curry verde',
+            'price' => 16.00,
+            'ingredients' => 'Pollo, curry verde, latte di cocco, peperoncini, verdure miste',
+            'description' => 'Un gustoso piatto di pollo al curry verde con una base di latte di cocco e una leggera nota di peperoncino. Servito con verdure miste e riso basmati.',
+            'image' => '/images/east-meets-west/pollo-al-curry-verde.jpg',
+          ],
+          [
+            'name' => 'Sushi bowl con pesce fresco misto',
+            'price' => 15.50,
+            'ingredients' => 'Riso, pesce fresco assortito, verdure, condimenti',
+            'description' => 'Un delizioso bowl di riso con una varietà di pesce fresco, verdure croccanti e condimenti gustosi.',
+            'image' => '/images/east-meets-west/sushi-bowl-pesce-misto.jpg',
+          ],
+          [
+            'name' => 'Bistecca di maiale alla griglia con salsa barbecue coreana',
+            'price' => 13.00,
+            'ingredients' => 'Bistecca di maiale, salsa barbecue coreana, contorno di verdure',
+            'description' => 'Una succulenta bistecca di maiale alla griglia con una deliziosa salsa barbecue coreana. Servita con un contorno di verdure.',
+            'image' => '/images/east-meets-west/bistecca-maiale-barbecue-coreana.jpg',
+          ],
+          [
+            'name' => 'Gnocchi di patate con salsa ai quattro formaggi',
+            'price' => 12.50,
+            'ingredients' => 'Gnocchi di patate freschi, salsa ai quattro formaggi',
+            'description' => 'Gnocchi di patate fatti in casa serviti con una cremosa salsa ai quattro formaggi.',
+            'image' => '/images/east-meets-west/gnocchi-patate-salsa-quattro-formaggi.jpg',
+          ],
+          [
+            'name' => 'Zuppa di miso con tofu e alghe',
+            'price' => 8.50,
+            'ingredients' => 'Brodo di miso, tofu, alghe, cipollotto',
+            'description' => 'Una calda zuppa di miso con cubetti di tofu, alghe aromatiche e cipollotto fresco.',
+            'image' => '/images/east-meets-west/zuppa-miso-tofu-alghe.jpg',
+          ],
+        ]
+      ],
+      [
+        'name' => 'El Sombrero',
+        'foods' => [
+          [
+            'name' => 'Enchiladas al formaggio',
+            'price' => 10.00,
+            'ingredients' => 'Tortilla di mais, formaggio, salsa di pomodoro, cipolla, peperoncino',
+            'description' => 'Deliziose tortillas ripiene di formaggio e condite con salsa di pomodoro, cipolla e peperoncino.',
+            'image' => '/images/enchiladas-al-formaggio.jpg',
+          ],
 
+          [
+            'name' => 'Tacos al pastor con guacamole',
+            'price' => 12.50,
+            'ingredients' => 'Tortilla di mais, carne di maiale marinata, ananas, cipolla, coriandolo, guacamole',
+            'description' => 'Gustosi tacos con carne di maiale marinata, ananas, cipolla, coriandolo e guacamole fresco.',
+            'image' => '/images/tacos-al-pastor-guacamole.jpg',
+          ],
 
-        $foods = [
-            [
-                'name' => 'Panino',
-                'price' => 10.00,
-                'ingredients' => 'Bun con sesamo',
-                'description' => 'Il Panino, un grande classico, semplice ma buonissimo!',
-            ],
-            [
-                'name'=> 'Risotto ai Funghi',
-                'price'=> 15.00,
-                'ingredients'=> 'Riso, funghi porcini, brodo di verdure, parmigiano',
-                'description'=> 'Un gustoso risotto cremoso con funghi porcini freschi e formaggio parmigiano.'
-              ],
-              [
-                'name'=> 'Tagliatelle al Ragù Bolognese',
-                'price'=> 13.50,
-                'ingredients'=> 'Tagliatelle fresche, ragù di carne, salsa di pomodoro',
-                'description'=> 'Le classiche tagliatelle alluovo servite con un ricco ragù di carne e salsa di pomodoro.',
-              ],
-              [
-                'name'=> 'Sushi Misto',
-                'price'=> 18.00,
-                'ingredients'=> 'Riso, pesce crudo assortito, alga nori',
-                'description'=> 'Una selezione di sushi fresco, con pesce crudo assortito e riso delicato.'
-              ],
-              [
-                'name'=> 'Pollo alla Griglia',
-                'price'=> 12.00,
-                'ingredients'=> 'Petto di pollo, marinata di erbe, contorno di verdure grigliate',
-                'description'=> 'Un succulento petto di pollo alla griglia servito con una marinata di erbe aromatiche e contorno di verdure grigliate.'
-              ],
-              [
-                'name'=> 'Lasagne al Forno',
-                'price'=> 16.50,
-                'ingredients'=> 'Sfoglie di pasta alluovo, ragù di carne, besciamella, parmigiano',
-                'description'=> 'Uno strato di sfoglie di pasta alluovo, alternato con ragù di carne, besciamella e parmigiano, il tutto cotto al forno.'
-              ],
-              [
-                'name'=> 'Insalata di Quinoa',
-                'price'=> 10.50,
-                'ingredients'=> 'Quinoa, pomodori, cetrioli, olive, feta, olio doliva',
-                'description'=> 'Un insalata leggera e salutare con quinoa, pomodori, cetrioli, olive, feta e condita con olio doliva.'
-              ],
-              [
-                'name'=> 'Fish and Chips',
-                'price'=> 14.00,
-                'ingredients'=> 'Filetto di merluzzo, patatine fritte, salsa tartara',
-                'description'=> 'Un classico piatto britannico con filetto di merluzzo impanato, patatine fritte croccanti e salsa tartara.'
-              ],
-              [
-                'name'=> 'Taco di Pollo',
-                'price'=> 9.50,
-                'ingredients'=> 'Tortilla di mais, pollo grigliato, salsa al lime, guacamole',
-                'description'=> 'Un gustoso taco con tortilla di mais ripiena di pollo grigliato, salsa al lime e guacamole.'
-              ],
-              [
-                'name'=> 'Gnocchi al Pesto',
-                'price'=> 11.50,
-                'ingredients'=> 'Gnocchi di patate, pesto di basilico, pinoli, parmigiano',
-                'description'=> 'Gnocchi di patate freschi conditi con pesto di basilico, pinoli tostati e formaggio parmigiano.'
-              ],
-              [
-                'name'=> 'Bistecca alla Griglia',
-                'price'=> 20.00,
-                'ingredients'=> 'Bistecca di manzo, sale, pepe, burro e aglio',
-                'description'=> 'Una succulenta bistecca di manzo alla griglia, condita con sale, pepe, burro e aglio.'
-              ],
-              [
-                'name'=> 'Cannelloni al Forno',
-                'price'=> 15.50,
-                'ingredients'=> 'Tubetti di pasta, ripieno di carne, besciamella, salsa di pomodoro',
-                'description'=> 'Tubetti di pasta ripieni di carne, ricoperti di besciamella e salsa di pomodoro, poi gratinati al forno.'
-              ],
-              [
-                'name'=> 'Insalata Caprese',
-                'price'=> 9.00,
-                'ingredients'=> 'Mozzarella di bufala, pomodori, basilico, olio EVO',
-                'description'=> 'insalata fresca e semplice con mozzarella di bufala, pomodori maturi, basilico fresco e olio EVO.'
-              ],
-              [
-                'name'=> 'Risotto ai Frutti di Mare',
-                'price'=> 17.50,
-                'ingredients'=> 'Riso, frutti di mare misti, brodo di pesce, vino bianco',
-                'description'=> 'Un risotto cremoso arricchito con una selezione di frutti di mare, cotto nel brodo di pesce e vino bianco.'
-              ],
-              [
-                'name'=> 'Polpette al Sugo',
-                'price'=> 12.00,
-                'ingredients'=> 'Polpette di carne, salsa di pomodoro, basilico',
-                'description'=> 'Deliziose polpette di carne servite con una salsa di pomodoro e basilico.'
-              ],
-              [
-                'name'=> 'Salmon Teriyaki',
-                'price'=> 16.00,
-                'ingredients'=> 'Filetto di salmone, salsa teriyaki, riso bianco',
-                'description'=> 'Un succoso filetto di salmone glassato con salsa teriyaki, servito con riso bianco.'
-              ],
-              [
-                'name'=> 'Carpaccio di Manzo',
-                'price'=> 13.50,
-                'ingredients'=> 'Fettine di manzo crudo, rucola, parmigiano, olio EVO',
-                'description'=> 'Fettine sottili di manzo crudo condite con rucola fresca, scaglie di parmigiano e olio EVO.'
-              ],
-              [
-                'name'=> 'Paella Valenciana',
-                'price'=> 18.50,
-                'ingredients'=> 'Riso, pollo, gamberi, cozze, piselli, zafferano',
-                'description'=> 'Una tradizionale paella spagnola con riso, pollo, gamberi, cozze, piselli e il distintivo sapore dello zafferano.'
-              ],
-              [
-                'name'=> 'Salmone alla Griglia',
-                'price'=> 15.00,
-                'ingredients'=> 'Filetto di salmone, sale, pepe, succo di limone',
-                'description'=> 'Un filetto di salmone alla griglia, condito con sale, pepe e succo di limone fresco.'
-              ],
-              [
-                'name'=> 'Tortellini alla Panna',
-                'price'=> 11.00,
-                'ingredients'=> 'Tortellini ripieni di carne, panna, prosciutto, piselli',
-                'description'=> 'Tortellini ripieni di carne serviti in una cremosa salsa di panna con aggiunta di prosciutto e piselli.'
-              ],
-              [
-                'name'=> 'Insalata di Gamberi',
-                'price'=> 14.00,
-                'ingredients'=> 'Gamberi, lattuga, pomodori ciliegini, avocado, salsa rosa',
-                'description'=> 'insalata fresca con gamberi succulenti, lattuga croccante, pomodorini, avocado e salsa rosa.'
-              ],
-              [
-                'name'=> 'Fettuccine Alfredo',
-                'price'=> 12.50,
-                'ingredients'=> 'Fettuccine, panna, burro, parmigiano',
-                'description'=> 'Un classico piatto di pasta con fettuccine condite con una cremosa salsa di panna, burro e parmigiano.'
-              ],
-              [
-                'name'=> 'Arrosto di Maiale',
-                'price'=> 16.00,
-                'ingredients'=> 'Arrosto di maiale, patate al forno, verdure grigliate',
-                'description'=> 'Un succulento arrosto di maiale servito con patate al forno e verdure grigliate.'
-              ],
-              [
-                'name'=> 'Carpaccio di Salmone',
-                'price'=> 13.50,
-                'ingredients'=> 'Fettine di salmone crudo, salsa di agrumi, rucola',
-                'description'=> 'Fettine sottili di salmone crudo condite con una salsa di agrumi e servite con rucola fresca.'
-              ],
-              [
-                'name'=> 'Gnocchi alla Sorrentina',
-                'price'=> 11.50,
-                'ingredients'=> 'Gnocchi di patate, salsa di pomodoro, mozzarella, basilico',
-                'description'=> 'Gnocchi di patate al forno con una deliziosa salsa di pomodoro, mozzarella filante e basilico fresco.'
-              ],
-              [
-                'name'=> 'Insalata di Couscous',
-                'price'=> 10.00,
-                'ingredients'=> 'Couscous, pomodori, cetrioli, olive, feta, menta',
-                'description'=> 'insalata leggera e fresca con couscous, pomodori, cetrioli, olive, feta e foglie di menta.'
-              ],
-              [
-                'name'=> 'Burger Vegano',
-                'price'=> 11.50,
-                'ingredients'=> 'Bun vegano, polpetta vegetale, lattuga, pomodoro, cipolla, maionese vegana',
-                'description'=> 'Un burger vegano con una gustosa polpetta vegetale, lattuga, pomodoro, cipolla e maionese vegana.'
-              ],
-              [
-                'name'=> 'Sushi Vegano',
-                'price'=> 16.00,
-                'ingredients'=> 'Riso, verdure fresche, alga nori',
-                'description'=> 'Una selezione di sushi vegano con riso e verdure fresche, avvolto in alga nori.'
-              ],
-              [
-                'name'=> 'Pizza Margherita',
-                'price'=> 10.00,
-                'ingredients'=> 'Pizza base, salsa di pomodoro, mozzarella, basilico',
-                'description'=> 'La classica pizza Margherita con salsa di pomodoro, mozzarella filante e foglie di basilico.'
-              ],
-              [
-                'name'=> 'Cotoletta alla Milanese',
-                'price'=> 14.50,
-                'ingredients'=> 'Cotoletta di vitello, pangrattato, uovo, limone',
-                'description'=> 'Una succulenta cotoletta di vitello impanata e fritta, servita con uno spruzzo di limone.'
-              ],
-              [
-                'name'=> 'Insalata di Arance e Finocchi',
-                'price'=> 9.50,
-                'ingredients'=> 'Arance, finocchi, rucola, olive, olio EVO',
-                'description'=> 'insalata fresca con arance dolci, finocchi croccanti, rucola, olive e olio EVO.'
-              ],
-              [
-                'name'=> 'Spaghetti alla Carbonara',
-                'price'=> 12.00,
-                'ingredients'=> 'Spaghetti, uova, pancetta, pecorino romano, pepe',
-                'description'=> 'Gli spaghetti conditi con una salsa cremosa a base di uova, pancetta croccante, formaggio pecorino e pepe nero macinato.'
-              ],
-              [
-                'name'=> 'Osso Buco',
-                'price'=> 18.00,
-                'ingredients'=> 'Fette di manzo, midollo osseo, salsa di pomodoro, vino bianco',
-                'description'=> 'Un gustoso piatto di fette di manzo brasato con midollo osseo, salsa di pomodoro e vino bianco.'
-              ],
-              [
-                'name'=> 'Insalata di Rucola e Parmigiano',
-                'price'=> 9.00,
-                'ingredients'=> 'Rucola, scaglie di parmigiano, noci, aceto balsamico',
-                'description'=> 'insalata semplice ma gustosa con rucola fresca, scaglie di parmigiano, noci tostate e condita con aceto balsamico.'
-              ],
-              [
-                'name'=> 'Pizza Diavola',
-                'price'=> 11.00,
-                'ingredients'=> 'Pizza base, salsa di pomodoro, salame piccante, peperoncino, mozzarella',
-                'description'=> 'Una pizza piccante con salsa di pomodoro, salame piccante, peperoncino e mozzarella filante.'
-              ],
-              [
-                'name'=> 'Tagliolini ai Frutti di Mare',
-                'price'=> 15.50,
-                'ingredients'=> 'Tagliolini freschi, frutti di mare misti, aglio, prezzemolo, olio EVO',
-                'description'=> 'Tagliolini freschi conditi con una selezione di frutti di mare, aglio, prezzemolo e olio EVO.'
-              ],
-              [
-                'name'=> 'Insalata Caesar',
-                'price'=> 10.50,
-                'ingredients'=> 'Lattuga romana, pollo grigliato, crostini di pane, parmigiano, salsa Caesar',
-                'description'=> 'insalata classica con lattuga romana, pollo grigliato, crostini di pane, scaglie di parmigiano e salsa Caesar.'
-              ],
-              [
-                'name'=> 'Pasta al Pomodoro',
-                'price'=> 11.00,
-                'ingredients'=> 'Pasta corta, salsa di pomodoro, basilico, olio EVO',
-                'description'=> 'Una semplice pasta con salsa di pomodoro, foglie di basilico fresco e un filo di olio EVO.'
-              ],
-              [
-                'name'=> 'Ratatouille',
-                'price'=> 12.00,
-                'ingredients'=> 'Melanzane, zucchine, peperoni, pomodori, cipolla, aglio',
-                'description'=> 'Una gustosa e colorata ratatouille con melanzane, zucchine, peperoni, pomodori, cipolla e aglio.'
-              ],
-              [
-                'name'=> 'Crostini Misti',
-                'price'=> 9.50,
-                'ingredients'=> 'Pane tostato, varie bruschette, prosciutto, formaggio, olive',
-                'description'=> 'Una selezione di crostini misti con diverse bruschette, accompagnate da prosciutto, formaggio e olive.'
-              ],
-              [
-                'name'=> 'Gelato alla Vaniglia',
-                'price'=> 7.00,
-                'ingredients'=> 'Gelato alla vaniglia, topping a scelta (cioccolato, caramello, frutta)',
-                'description'=> 'Una coppetta di gelato alla vaniglia con la possibilità di aggiungere un topping a scelta, come cioccolato, caramello o frutta fresca.'
-              ],
-              [
-                'name'=> 'Zuppa di Pomodoro',
-                'price'=> 8.50,
-                'ingredients'=> 'Pomodori maturi, brodo di verdure, basilico, crostini di pane',
-                'description'=> 'Una deliziosa zuppa di pomodoro preparata con pomodori maturi, brodo di verdure, basilico e servita con crostini di pane.'
-              ],
-              [
-                'name'=> 'Panna Cotta',
-                'price'=> 7.50,
-                'ingredients'=> 'Panna, zucchero, gelatina, vaniglia, frutti di bosco',
-                'description'=> 'Un dessert italiano classico, la panna cotta, preparata con panna, zucchero, gelatina, vaniglia e guarnita con frutti di bosco.'
-              ]
+          [
+            'name' => 'Fajitas di pollo con tortillas fatte in casa',
+            'price' => 15.00,
+            'ingredients' => 'Strisce di pollo marinato, peperoni, cipolla, salsa di soia, tortillas fatte in casa',
+            'description' => 'Saporite fajitas con strisce di pollo marinato, peperoni, cipolla e salsa di soia. Servite con tortillas fatte in casa.',
+            'image' => '/images/fajitas-pollo-tortillas-fatte-in-casa.jpg',
+          ],
+          [
+            'name' => 'Quesadillas di mais con pollo e formaggio',
+            'price' => 9.50,
+            'ingredients' => 'Tortilla di mais, pollo, formaggio, cipolla, peperoncino',
+            'description' => 'Deliziose quesadillas di mais farcite con pollo, formaggio, cipolla e peperoncino.',
+            'image' => '/images/quesadillas-mais-pollo-formaggio.jpg',
+          ],
 
+          [
+            'name' => 'Guacamole fresco con totopos',
+            'price' => 7.00,
+            'ingredients' => 'Avocado, pomodoro, cipolla, lime, coriandolo, totopos',
+            'description' => 'Un guacamole fresco e cremoso preparato con avocado, pomodoro, cipolla, lime e coriandolo. Servito con totopos croccanti.',
+            'image' => '/images/guacamole-fresco-totopos.jpg',
+          ],
 
-            // Aggiungi gli altri cibi qui
-        ];
+          [
+            'name' => 'Chili con carne',
+            'price' => 11.00,
+            'ingredients' => 'Carne macinata, fagioli, pomodori, cipolla, peperoncino, spezie',
+            'description' => 'Un classico chili con carne preparato con carne macinata, fagioli, pomodori, cipolla, peperoncino e spezie aromatiche.',
+            'image' => '/images/chili-con-carne.jpg',
+          ],
+          [
+            'name' => 'Burrito di manzo con fagioli e riso',
+            'price' => 10.50,
+            'ingredients' => 'Tortilla di grano, manzo, fagioli, riso, formaggio, pico de gallo',
+            'description' => 'Un burrito abbondante e gustoso con manzo tenero, fagioli, riso, formaggio e pico de gallo.',
+            'image' => '/images/burrito-manzo-fagioli-riso.jpg',
+          ],
 
-        foreach ($foods as $foodData) {
-            $newFood = new Food();
-            $newFood->restaurant_id = $faker->randomElement($restaurant_ids);
-            $newFood->name = $foodData['name'];
-            $newFood->price = $foodData['price'];
-            $newFood->ingredients = $foodData['ingredients'];
-            $newFood->description = $foodData['description'];
-            $newFood->visibility = 'public';
-            $newFood->slug = Str::slug($newFood->name, '-');
+          [
+            'name' => 'Salsa di formaggio fondente con nachos',
+            'price' => 6.50,
+            'ingredients' => 'Formaggio cheddar, formaggio Jack, peperoncino jalapeno, nachos',
+            'description' => 'Una salsa cremosa e irresistibile preparata con formaggio cheddar, formaggio Jack e peperoncino jalapeno. Da gustare con nachos croccanti.',
+            'image' => '/images/salsa-formaggio-fondente-nachos.jpg',
+          ],
+        ]
+      ],
+      [
+        'name' => 'Thai Orchid',
+        'foods' => [
+          [
+            'name' => 'Pad Thai con gamberi',
+            'price' => 12.00,
+            'ingredients' => 'Tagliatelle di riso, gamberi, uova, germogli di soia, arachidi, salsa di pesce',
+            'description' => 'Un delizioso piatto di Pad Thai con gamberi, tagliatelle di riso, uova, germogli di soia, arachidi e salsa di pesce.',
+            'image' => '/images/pad-thai-gamberi.jpg',
+          ],
 
-            // Genera un'immagine casuale utilizzando il faker
-            $imagePath = $faker->image('public/images/foods', 400, 300, null, false);
-            $newFood->image = $imagePath;
+          [
+            'name' => 'Pollo al curry rosso',
+            'price' => 11.50,
+            'ingredients' => 'Pollo, curry rosso, latte di cocco, peperoni, bambù, basilico',
+            'description' => 'Un gustoso pollo al curry rosso preparato con pollo, curry rosso, latte di cocco, peperoni, bambù e basilico.',
+            'image' => '/images/pollo-curry-rosso.jpg',
+          ],
 
-            $newFood->save();
-            $newFood->orders()->attach($faker->randomElements($orders_ids, rand(1, 6)), ['quantity' => 5]);
-        }
+          [
+            'name' => 'Tom Yum Soup (zuppa piccante con gamberi e funghi)',
+            'price' => 9.50,
+            'ingredients' => 'Brodo di gamberi, gamberi, funghi, citronella, lime, peperoncino',
+            'description' => 'Una zuppa piccante e aromaticamente deliziosa preparata con brodo di gamberi, gamberi, funghi, citronella, lime e peperoncino.',
+            'image' => '/images/tom-yum-soup.jpg',
+          ],
+          [
+            'name' => 'Insalata di papaya verde',
+            'price' => 8.00,
+            'ingredients' => 'Papaya verde, pomodori ciliegia, fagioli verdi, arachidi, salsa di pesce, lime',
+            'description' => 'Un\'insalata fresca e croccante preparata con papaya verde, pomodori ciliegia, fagioli verdi, arachidi, salsa di pesce e lime.',
+            'image' => '/images/insalata-papaya-verde.jpg',
+          ],
+          [
+            'name' => 'Satay di pollo con salsa di arachidi',
+            'price' => 10.00,
+            'ingredients' => 'Pollo, salsa di arachidi, spezie, salsa di soia, aglio',
+            'description' => 'Spiedini di pollo marinati e grigliati, serviti con una deliziosa salsa di arachidi. Un piatto ricco di sapore e aromi.',
+            'image' => '/images/satay-pollo.jpg',
+          ],
+          [
+            'name' => 'Riso fritto alla thailandese con ananas',
+            'price' => 9.00,
+            'ingredients' => 'Riso, ananas, verdure miste, uova, salsa di soia, spezie',
+            'description' => 'Un piatto classico della cucina thailandese con riso saltato in padella insieme ad ananas succoso, verdure miste e uova. Un equilibrio perfetto di sapori dolci e salati.',
+            'image' => '/images/riso-fritto-ananas.jpg',
+          ],
+          [
+            'name' => 'Gamberi in salsa di tamarindo',
+            'price' => 12.00,
+            'ingredients' => 'Gamberi, salsa di tamarindo, aglio, zenzero, peperoncino, verdure',
+            'description' => 'Gamberi succulenti cotti in una salsa agrodolce al tamarindo con note di aglio, zenzero e peperoncino. Un piatto dal sapore unico.',
+            'image' => '/images/gamberi-salsa-tamarindo.jpg',
+          ],
+          [
+            'name' => 'Mango sticky rice (riso dolce al mango)',
+            'price' => 7.00,
+            'ingredients' => 'Riso glutinoso, mango maturo, latte di cocco, zucchero di palma',
+            'description' => 'Un dessert tradizionale thailandese composto da riso glutinoso dolce e appiccicoso servito con fette di mango maturo. Un delizioso modo per concludere un pasto.',
+            'image' => '/images/mango-sticky-rice.jpg',
+          ],
+        ]
+      ],
+      [
+        'name' => 'Bollywood Bites',
+        'foods' => [
+          [
+            'name' => 'Butter chicken',
+            'price' => 14.00,
+            'ingredients' => 'Pollo, salsa di pomodoro, burro, panna, spezie indiane',
+            'description' => 'Un piatto classico della cucina indiana composto da pezzi di pollo tenero cotti in una salsa di pomodoro cremosa e burrosa. Servito con pane naan o riso basmati.',
+            'image' => '/images/butter-chicken.jpg',
+          ],
+          [
+            'name' => 'Biryani di pollo',
+            'price' => 15.00,
+            'ingredients' => 'Pollo, riso basmati, spezie, cipolla, yogurt, mandorle',
+            'description' => 'Un piatto di riso aromatico e speziato preparato con pollo succulento, spezie fragranti, cipolla caramellizzata e mandorle croccanti. Un classico della cucina indiana.',
+            'image' => '/images/biryani-pollo.jpg',
+          ],
+          [
+            'name' => 'Samosa',
+            'price' => 8.00,
+            'ingredients' => 'Patate, piselli, spezie indiane, pasta sfoglia',
+            'description' => 'Deliziosi fagottini fritti ripieni di patate speziate e piselli. Un antipasto croccante e saporito tipico della cucina indiana.',
+            'image' => '/images/samosa.jpg',
+          ],
+          [
+            'name' => 'Paneer tikka masala',
+            'price' => 12.00,
+            'ingredients' => 'Paneer (formaggio indiano), salsa di pomodoro, panna, spezie indiane',
+            'description' => "Un piatto vegetariano della cucina indiana che presenta cubetti di paneer marinati e grigliati in una salsa di pomodoro cremosa e speziata. Un'esplosione di sapori.",
+            'image' => '/images/paneer-tikka-masala.jpg',
+          ],
+          [
+            'name' => 'Chana masala',
+            'price' => 10.00,
+            'ingredients' => 'Ceci, salsa di pomodoro, spezie indiane',
+            'description' => 'Un delizioso piatto vegetariano della cucina indiana che presenta ceci cotti in una salsa di pomodoro ricca di spezie. Saporito e nutriente.',
+            'image' => '/images/chana-masala.jpg',
+          ],
+          [
+            'name' => 'Naan all\'aglio',
+            'price' => 4.00,
+            'ingredients' => 'Farina, lievito, aglio, burro',
+            'description' => 'Un pane indiano tradizionale cotto al forno tandoor e spennellato con burro e aglio. Morbido, profumato e perfetto da accompagnare con i piatti indiani.',
+            'image' => '/images/garlic-naan.jpg',
+          ],
+          [
+            'name' => 'Aloo gobi',
+            'price' => 11.00,
+            'ingredients' => 'Patate, cavolfiore, spezie indiane',
+            'description' => 'Un piatto vegetariano classico della cucina indiana che unisce patate e cavolfiore in una deliziosa salsa di spezie. Gustoso e appagante.',
+            'image' => '/images/aloo-gobi.jpg',
+          ],
+          [
+            'name' => 'Gulab jamun',
+            'price' => 6.00,
+            'ingredients' => 'Latte in polvere, burro ghee, zucchero, acqua di rose',
+            'description' => 'Un dolce indiano amato composto da palline di latte in polvere fritte e immerse in uno sciroppo di zucchero profumato all\'acqua di rose. Dolce e delizioso.',
+            'image' => '/images/gulab-jamun.jpg',
+          ],
+        ]
+      ],
+      [
+        'name' => 'The Lounge Oasis',
+        'foods' => [
+          [
+            'name' => 'Antipasto misto',
+            'price' => 15.00,
+            'ingredients' => 'Formaggi assortiti, affettati misti, olive, grissini',
+            'description' => 'Una selezione di formaggi pregiati e affettati assortiti, accompagnati da olive e grissini. Ideale per condividere e iniziare il pasto con gusto.',
+            'image' => '/images/antipasto-misto.jpg',
+          ],
+          [
+            'name' => 'Bruschette',
+            'price' => 8.00,
+            'ingredients' => 'Pane tostato, pomodori freschi, basilico, aglio',
+            'description' => 'Deliziose bruschette preparate con pane tostato croccante, pomodori freschi, basilico e uno spicchio d\'aglio. Un antipasto classico e saporito.',
+            'image' => '/images/bruschette-pomodori-basilico.jpg',
+          ],
+          [
+            'name' => 'Insalata di quinoa con avocado e pomodorini',
+            'price' => 12.00,
+            'ingredients' => 'Quinoa, avocado, pomodorini, cetrioli, limone',
+            'description' => "Un'insalata fresca e gustosa preparata con quinoa, avocado maturo, pomodorini succosi, cetrioli freschi e condita con succo di limone. Un'opzione leggera e salutare per gli amanti della quinoa.",
+            'image' => '/images/insalata-quinoa-avocado.jpg',
+          ],
+          [
+            'name' => 'Tagliere di formaggi con miele e noci',
+            'price' => 16.00,
+            'ingredients' => 'Formaggi assortiti, miele, noci',
+            'description' => "Una selezione di formaggi pregiati accompagnati da miele dolce e noci croccanti. Un'esplosione di sapori per gli amanti dei formaggi.",
+            'image' => '/images/tagliere-formaggi-miele-noci.jpg',
+          ],
+          [
+            'name' => 'Polpettine di carne al sugo',
+            'price' => 10.00,
+            'ingredients' => 'Carne macinata, pangrattato, uova, salsa di pomodoro',
+            'description' => 'Deliziose polpettine di carne fatte in casa, cotte al sugo di pomodoro. Un classico piatto italiano che conquista sempre.',
+            'image' => '/images/polpettine-carne-sugo.jpg',
+          ],
+          [
+            'name' => 'Mini burger con salsa barbecue',
+            'price' => 14.00,
+            'ingredients' => 'Carne macinata, pane per hamburger, formaggio, lattuga, pomodoro, salsa barbecue',
+            'description' => 'Gustosi mini burger preparati con carne di alta qualità, serviti su morbidi panini per hamburger e conditi con formaggio, lattuga, pomodoro e una deliziosa salsa barbecue.',
+            'image' => '/images/mini-burger-salsa-barbecue.jpg',
+          ],
+          [
+            'name' => 'Insalata di mare con gamberetti',
+            'price' => 16.00,
+            'ingredients' => 'Gamberetti, insalata mista, pomodorini, cetrioli, olive, limone',
+            'description' => 'Un\'insalata fresca e leggera con gamberetti succosi, insalata mista croccante, pomodorini dolci, cetrioli freschi, olive e un dressing al limone. Perfetta per gli amanti del mare.',
+            'image' => '/images/insalata-mare-gamberetti.jpg',
+          ],
+        ]
+      ],
+      [
+        'name' => 'Trattoria del nonno',
+        'foods' => [
+          [
+            'name' => 'Agnolotti burro e salvia',
+            'price' => 14.00,
+            'ingredients' => 'Agnolotti ripieni di carne o formaggio, burro, salvia',
+            'description' => 'Deliziosi agnolotti freschi ripieni di carne o formaggio, serviti con una delicata salsa di burro e salvia. Un piatto classico e gustoso.',
+            'image' => '/images/agnolotti-burro-salvia.jpg',
+          ],
+          [
+            'name' => 'Baccalà con patate e olive nere',
+            'price' => 18.00,
+            'ingredients' => 'Baccalà, patate, olive nere, aglio, prezzemolo',
+            'description' => 'Un piatto tradizionale a base di baccalà, patate e olive nere, condito con aglio e prezzemolo. Una combinazione di sapori mediterranei che delizierà il palato.',
+            'image' => '/images/baccala-patate-olive.jpg',
+          ],
+          [
+            'name' => 'Spaghetti alla carbonara',
+            'price' => 12.00,
+            'ingredients' => 'Spaghetti, guanciale, uova, pecorino romano, pepe nero',
+            'description' => 'Un classico della cucina italiana, gli spaghetti alla carbonara sono preparati con guanciale croccante, uova, pecorino romano e pepe nero. Una pasta cremosa e saporita.',
+            'image' => '/images/spaghetti-carbonara.jpg',
+          ],
+          [
+            'name' => 'Fiorentina',
+            'price' => 25.00,
+            'ingredients' => 'Bistecca di manzo alla fiorentina, sale marino',
+            'description' => 'La Fiorentina è una succulenta bistecca di manzo alla griglia, cotta al punto giusto e servita con un pizzico di sale marino. Un piatto prelibato per gli amanti della carne.',
+            'image' => '/images/fiorentina.jpg',
+          ],
+          [
+            'name' => 'Frittura di Pesce',
+            'price' => 16.00,
+            'ingredients' => 'Calamari, gamberi, cozze, seppie, farina, olio di oliva',
+            'description' => 'Una gustosa frittura mista di pesce che include calamari, gamberi, cozze e seppie. Il tutto viene fritto in una leggera pastella di farina e servito con una salsa di accompagnamento.',
+            'image' => '/images/frittura-pesce.jpg',
+          ],
+          [
+            'name' => 'Tiramisù',
+            'price' => 6.00,
+            'ingredients' => 'Savoiardi, mascarpone, uova, caffè, cacao',
+            'description' => 'Il tiramisù è un dolce al cucchiaio preparato con savoiardi, mascarpone, uova, caffè e cacao. Un dessert classico e irresistibile.',
+            'image' => '/images/tiramisu.jpg',
+          ],
+          [
+            'name' => 'Pizza Margherita',
+            'price' => 10.00,
+            'ingredients' => 'Pizza dough, tomato sauce, mozzarella cheese, basil leaves',
+            'description' => 'A classic Italian pizza topped with tomato sauce, mozzarella cheese, and fresh basil leaves. A simple yet delicious choice for pizza lovers.',
+            'image' => '/images/pizza-margherita.jpg',
+          ],
+        ]
+      ]
+    ];
 
-
-
+    foreach ($restaurants as $restaurantData) {
+      $restaurant = Restaurant::create(['name' => $restaurantData['name']]);
+      $foods = $restaurantData['foods'];
+      foreach ($foods as $foodData) {
+        Food::create([
+          'restaurant_id' => $restaurant->id,
+          'name' => $foodData['name'],
+          'price' => $foodData['price'],
+          'ingredients' => $foodData['ingredients'],
+          'description' => $foodData['description'],
+          'image' => $foodData['image'],
+        ]);
+      }
     }
+  }
 }

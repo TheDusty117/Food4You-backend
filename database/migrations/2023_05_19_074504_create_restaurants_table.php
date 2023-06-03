@@ -18,12 +18,12 @@ return new class extends Migration
             $table->id();
 
             $table->string('name', 100)->notnull();
-            $table->string('address', 150)->notnull();
+            $table->string('address', 150)->nullable();
             $table->string('telephone_number', 20)->nullable();
             $table->string('email', 100)->nullable();
-            $table->string('vat', 11)->notnull();
+            $table->string('vat', 11)->nullable();
 
-             //slug
+            //slug
             $table->string('slug')->default(Str::random(10));
 
             $table->timestamps();
@@ -40,4 +40,3 @@ return new class extends Migration
         Schema::dropIfExists('restaurants');
     }
 };
-
