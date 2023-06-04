@@ -28,7 +28,7 @@ class FoodSeeder extends Seeder
         'price' => 14.00,
         'ingredients' => 'Agnolotti ripieni di carne o formaggio, burro, salvia',
         'description' => 'Deliziosi agnolotti freschi ripieni di carne o formaggio, serviti con una delicata salsa di burro e salvia. Un piatto classico e gustoso.',
-        'image' => '/images/agnolotti.png',
+        'image' => '/images/gnocchi-patate-formaggi.jpg',
       ],
       [
         'name' => 'Polpette al sugo',
