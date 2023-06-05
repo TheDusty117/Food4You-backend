@@ -14,6 +14,7 @@ use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Support\Facades\DB;
 
 
+
 class FoodController extends Controller
 {
     /**
@@ -64,14 +65,17 @@ class FoodController extends Controller
 
         // Carica l'immagine
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('food_images', 'public');
-            $data['image'] = $imagePath;
+            $image = $request->file('image');
+            $imageName = '/images/' . $image->getClientOriginalName();
+            Storage::disk('public')->put($imageName, File::get($image));
+            $data['image'] = $imageName;
         }
 
         $food = Food::create($data);
 
         return redirect()->route('foods.show', $food);
     }
+
 
 
 
