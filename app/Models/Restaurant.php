@@ -17,6 +17,7 @@ class Restaurant extends Model
         'vat',
         'user_id',
         'slug',
+        'img_restaurant',
     ];
 
 
