@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
                             {{-- @method('PUT') --}}
                             {{-- NAME --}}
@@ -157,6 +157,21 @@
                                 </div>
                             </div>
 
+                            {{-- IMMAGINE RISTORANTE --}}
+                            <div class="mb-4 row">
+                                <label for="img_restaurant" class="col-md-4 col-form-label text-md-right">{{ __('Immagine Ristorante') }}</label>
+                                <div class="col-md-6">
+                                    <input id="img_restaurant" type="file" class="form-control @error('img_restaurant') is-invalid @enderror" name="img_restaurant" accept="image/*">
+                                    @error('img_restaurant')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            
+
                             {{-- CATEGORIE --}}
                             <div class="mb-4 row">
                                 <label for="categories" class="form-label">Categorie</label>
@@ -186,7 +201,9 @@
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Registrati') }}
+                                    </button>
                                 </div>
+                            </div>
                         </form>
                     </div>
                 </div>

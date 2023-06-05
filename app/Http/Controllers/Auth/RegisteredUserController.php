@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -36,22 +36,17 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //scommentami
-        // dd($request->user_id());
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'restaurant_name' => ['required', 'min:3', 'max:100'],
             'restaurant_address' => ['required', 'min:4', 'max:150'],
-            'restaurant_vat' => ['required', 'min:11', 'max:11'],
-            'restaurant_telephone_number' => ['nullable', 'min:7', 'max:10',],
-
-            'categories' => ['required','array','min:1'],
-            'categories_id' => ['exists:categories,id']
-
-
+            'restaurant_vat' => ['required', 'size:11'],
+            'restaurant_telephone_number' => ['nullable', 'min:7', 'max:10'],
+            'img_restaurant' => ['image', 'max:2048'], // Dimensione massima dell'immagine: 2MB
+            'categories' => ['required', 'array'],
+            'categories.*' => ['exists:categories,id'],
         ]);
 
         $user = User::create([
@@ -59,7 +54,6 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
 
         $restaurant = Restaurant::create([
             'name' => $request->restaurant_name,
@@ -69,11 +63,15 @@ class RegisteredUserController extends Controller
             'telephone_number' => $request->restaurant_telephone_number,
             'user_id' => $user->id,
             'slug' => Str::slug($request->restaurant_name, '-'),
-
         ]);
 
         $restaurant->categories()->sync($request->input('categories', []));
 
+        if ($request->hasFile('img_restaurant')) {
+            $imagePath = '/images/' . $request->file('img_restaurant')->getClientOriginalName();
+            $restaurant->img_restaurant = $imagePath;
+            $restaurant->save();
+        }
 
         event(new Registered($user));
 
