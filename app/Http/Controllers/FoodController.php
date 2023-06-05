@@ -119,44 +119,46 @@ class FoodController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateFoodRequest $request, Food $food)
-    {
-        try {
-            if ($food->restaurant_id != Auth::id()) {
-                abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');
-            }
-
-            $data = $request->validated();
-
-            // Aggiungi la logica per i checkbox
-            $data['vegan'] = $request->has('vegan');
-            $data['spicy'] = $request->has('spicy');
-            $data['visibility'] = $request->has('visibility') ? 'public' : 'private';
-
-            // Aggiorna il valore dello slug solo se il nome viene modificato
-            if ($data['name'] !== $food->name) {
-                $data['slug'] = Str::slug($data['name']);
-            }
-
-            // Carica l'immagine se è stata fornita
-            if ($request->hasFile('image')) {
-                // Elimina l'immagine precedente se presente
-                if ($food->image) {
-                    Storage::disk('public')->delete($food->image);
-                }
-                $imagePath = $request->file('image')->store('foods', 'public');
-                $data['image'] = $imagePath;
-            }
-
-            // Aggiorna il cibo nel database
-            $food->update($data);
-
-            return redirect()->route('foods.show', $food);
-        } catch (PostTooLargeException $e) {
-            // Gestione dell'eccezione "PostTooLargeException"
-            // Ad esempio, puoi reindirizzare l'utente a una pagina di errore con un messaggio appropriato
-            return redirect()->back()->with('error', 'La dimensione del file supera il limite consentito.');
+{
+    try {
+        if ($food->restaurant_id != Auth::id()) {
+            abort(403, 'Ehhh... volevi! Guarda che faccia, non se lo aspettava!');
         }
+
+        $data = $request->validated();
+
+        // Aggiungi la logica per i checkbox
+        $data['vegan'] = $request->has('vegan');
+        $data['spicy'] = $request->has('spicy');
+        $data['visibility'] = $request->has('visibility') ? 'public' : 'private';
+
+        // Aggiorna il valore dello slug solo se il nome viene modificato
+        if ($data['name'] !== $food->name) {
+            $data['slug'] = Str::slug($data['name']);
+        }
+
+        // Carica l'immagine se è stata fornita
+        if ($request->hasFile('image')) {
+            // Elimina l'immagine precedente se presente
+            if ($food->image) {
+                Storage::disk('public')->delete($food->image);
+            }
+            $image = $request->file('image');
+            $imageName = '/images/' . $image->getClientOriginalName();
+            Storage::disk('public')->put($imageName, File::get($image));
+            $data['image'] = $imageName;
+        }
+
+        // Aggiorna il cibo nel database
+        $food->update($data);
+
+        return redirect()->route('foods.show', $food);
+    } catch (PostTooLargeException $e) {
+        // Gestione dell'eccezione "PostTooLargeException"
+        // Ad esempio, puoi reindirizzare l'utente a una pagina di errore con un messaggio appropriato
+        return redirect()->back()->with('error', 'La dimensione del file supera il limite consentito.');
     }
+}
 
 
     public function restore(Food $food)
